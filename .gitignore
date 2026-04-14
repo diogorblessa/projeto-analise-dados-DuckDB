@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+.env
+.DS_Store
+CLAUDE.local.md
+.claude/settings.local.json
+.vscode/
+.idea/
+*.code-workspace
+
+# Guia operacional pessoal
+docs/guia_de_execucao.md
+
+# Cache de gerenciador de pacotes (uv) — nunca deve ser commitado
+state/uv-cache/

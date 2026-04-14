@@ -1,0 +1,18 @@
+[project]
+name = "projeto-analise-dados-duckdb"
+version = "0.1.0"
+description = "Case TechShop de analise de dados com DuckDB, notebook e SQL analitico."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "duckdb>=1.0",
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "matplotlib>=3.7",
+  "seaborn>=0.13",
+  "jupyter>=1.0",
+  "ipykernel>=6.25",
+]
+
+[tool.uv]
+package = false

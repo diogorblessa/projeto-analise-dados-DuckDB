@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(rm -fr:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Write(./data/raw/**)",
+      "Edit(./data/raw/**)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\":\"[TechShop] Ao iniciar: leia memory-bank/active-context.md e memory-bank/question-status.md. docs/PRD.md = unica fonte normativa; memory-bank/ = unica continuidade operacional persistente; review-checklist.md fica em memory-bank/; state/* e scratch opcional.\"}'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\":\"[TechShop] Antes de encerrar: sincronize memory-bank/question-status.md, memory-bank/handoff.md, memory-bank/active-context.md e, se houve revisao, memory-bank/review-checklist.md. current-task.md e session-log.md sao scratch opcionais.\"}'"
+          }
+        ]
+      }
+    ]
+  }
+}
