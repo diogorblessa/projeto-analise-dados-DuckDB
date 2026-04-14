@@ -12,6 +12,7 @@ CLAUDE.local.md
 
 # Guia operacional pessoal
 docs/guia_de_execucao.md
+docs/guia_claude_etapas_8_9.md
 
 # Cache de gerenciador de pacotes (uv) — nunca deve ser commitado
 state/
