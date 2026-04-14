@@ -14,4 +14,4 @@ CLAUDE.local.md
 docs/guia_de_execucao.md
 
 # Cache de gerenciador de pacotes (uv) — nunca deve ser commitado
-state/uv-cache/
+state/
