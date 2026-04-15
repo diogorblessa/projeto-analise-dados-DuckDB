@@ -17,6 +17,7 @@
 
 ## Escopo
 - Validar cobertura, rastreabilidade e suficiência da questão alvo.
+- Ao revisar código, consultar `.claude/rules/code-style.md` para encoding, `PEP 8` pragmático e nomenclatura.
 - Em `--auditar`, registrar achados em `memory-bank/review-checklist.md` com IDs `RQ-{Q}-NNN`, sem editar notebook.
 - Em `--corrigir`, aplicar somente correções `objetiva` que continuem válidas; deixar `manual` como `blocked`.
 - Atualizar `memory-bank/question-status.md`.

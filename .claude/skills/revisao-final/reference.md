@@ -10,6 +10,7 @@
 ## Escopo
 - Aplicar checklist global PASS/FAIL contra os critérios de aceite do PRD.
 - Cada item com evidência explícita, por questão, seção ou célula.
+- Ao revisar código, consultar `.claude/rules/code-style.md` para encoding, `PEP 8` pragmático e nomenclatura.
 - Em `--corrigir`, aplicar somente itens `open` com `fix_class=objetiva` que continuem válidos.
 - Em `--corrigir`, marcar `stale` o que já não se aplica e `blocked` o que exigir decisão.
 

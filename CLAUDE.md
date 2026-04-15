@@ -29,7 +29,7 @@
 - `docs/playbook_subagentes.md`: contrato operacional para decidir quando invocar `@code-reviewer` e `@business-reporter`, com escopo por bloco e templates de prompt.
 - `.claude/rules/project-globals.md`: regras globais do repo, incluindo premissas, simplicidade, escopo cirúrgico e verificação.
 - `.claude/rules/notebook-base.md`: estrutura do notebook e roteamento por skill.
-- `.claude/rules/analysis-writing.md`, `visualization.md` e `sql-conventions.md`: regras escopadas por caminho.
+- `.claude/rules/analysis-writing.md`, `visualization.md`, `sql-conventions.md` e `code-style.md`: regras escopadas por caminho.
 - `.claude/rules/memory-bank-format.md`: schema e política de atualização de `memory-bank/**`.
 - `.claude/skills/*/SKILL.md`: workflows canônicos de execução por questão ou revisão.
 - `.claude/skills/*/reference.md`: critérios detalhados carregados sob demanda.

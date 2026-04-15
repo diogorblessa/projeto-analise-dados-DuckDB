@@ -88,7 +88,7 @@ relevante para o negócio.
 - Q5 identifica pelo menos `2` erros graves com correção mostrada.
 - Q6 apresenta diagrama legível (texto, Mermaid ou imagem) com granularidade da fato declarada.
 - README cobre projeto, descobertas, execução e estrutura.
-- Código sem redundância, imports centralizados, nomes descritivos.
+- Código sem redundância, imports centralizados, `PEP 8` como referência pragmática para Python e nomes descritivos que indiquem a função de variáveis, funções e aliases, sem abreviações opacas.
 
 ## 7. Fora de escopo
 - Modelagem preditiva (classificação, regressão, clustering).
@@ -101,6 +101,7 @@ relevante para o negócio.
 ## 8. Padrões
 - **Banco SQL:** exclusivamente DuckDB in-memory. SQLite ou banco externo estão proibidos.
 - **Idioma:** português brasileiro para todo conteúdo analítico e markdown; inglês apenas em nomes de arquivos, variáveis e palavras-chave técnicas consolidadas.
+- **Encoding:** arquivos textuais e notebooks devem preservar `UTF-8`, mantendo a acentuação em português brasileiro.
 - **Artefato principal:** `notebooks/case_techshop.ipynb` é a única entrega técnica avaliável. Scripts `.py` e `.sql` são insumos reproduzíveis.
 - **Dataset imutável:** `data/raw/ecommerce_vendas.csv` nunca é sobrescrito. Saídas tratadas vão para `data/interim/`.
 - **Célula:** padrão `[MD explicação] -> [CODE] -> [MD análise]`, exceto Q6.
