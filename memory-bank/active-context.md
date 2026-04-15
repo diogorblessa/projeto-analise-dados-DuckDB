@@ -8,7 +8,7 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 
 ## Foco atual
 - Q2 - Tratamento — `not_started`
-- Data: 2026-04-14
+- Data: 2026-04-15
 
 ## Skill ou fluxo ativo
 - nenhum
@@ -17,7 +17,7 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 - nenhuma
 
 ## Próximo marco
-- Re-executar notebook (Restart & Run All) para sincronizar outputs da seção 7b
+- Re-executar notebook (Restart & Run All) para sincronizar outputs das seções 3, 5, 8 e 9 alteradas nesta sessão
 - Iniciar Q2 com `/iniciar-questao Q2` e depois `/tratar`
 
 ## Ponteiros

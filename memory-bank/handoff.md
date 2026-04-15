@@ -2,6 +2,23 @@
 
 Transferência entre sessões. Atualize ao encerrar uma sessão com trabalho não concluído e mantenha este arquivo sincronizado com `active-context.md` e `question-status.md`.
 
+## Encerramento — Q1 (2026-04-15)
+
+- **Concluído:**
+  - [MD análise] `ee3d6570` reestruturado com base na nota executiva do `@business-reporter`: seções Evidências-chave / O que isso significa para o negócio / Ressalvas / Próximo passo
+  - Seção 9 do [CODE] `f103d4c0` reescrita: `print(unique())` substituído por linha de resumo compacta + `display()` de todos os 20 registros inválidos ordenados por `pedido_id`
+  - `/revisar-questao Q1 --auditar`: RQ-Q1-004 identificado (desconto_% max=20% visível no describe, não comentado após reestruturação)
+  - `/revisar-questao Q1 --corrigir`: RQ-Q1-004 aplicado (frase sobre domínio limpo e teto de 20% adicionada após missing disfarçado)
+  - `review-checklist.md`: Open Findings = 0; Applied/Closed = RQ-Q1-001 a RQ-Q1-004
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** nenhum
+
+- **Próximo passo:** `/iniciar-questao Q2` → `/tratar` — tratar os 11 achados de `data-issues.md` em ordem de prioridade (DI-002 duplicatas → DI-003 qtd<=0 → DI-008/DI-009 case → DI-010 datas → DI-001/DI-006/DI-007 nulos)
+
+---
+
 ## Encerramento — Q1 (2026-04-14)
 
 - **Concluído:**
