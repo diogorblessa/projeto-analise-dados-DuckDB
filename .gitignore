@@ -9,6 +9,7 @@ CLAUDE.local.md
 .vscode/
 .idea/
 *.code-workspace
+.editorconfig
 
 # Guia operacional pessoal
 docs/guia_de_execucao.md
