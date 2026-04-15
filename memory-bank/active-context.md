@@ -7,17 +7,18 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 > _status: template pré-execução — aguardando primeira sessão de trabalho no notebook. Campos abaixo ainda não preenchidos por design._
 
 ## Foco atual
-- _Q?: nome curto — em `not_started` / `in_progress` / `review` / `done`_
-- _Data: yyyy-mm-dd_
+- Q2 - Tratamento — `not_started`
+- Data: 2026-04-14
 
 ## Skill ou fluxo ativo
-- _ex.: `/diagnosticar --draft`, `/revisar-questao Q1`_
+- nenhum
 
 ## Decisões aguardando validação
-- _Liste itens de `decisions.md` com `status=proposed`, resumidos em 1 linha._
+- nenhuma
 
 ## Próximo marco
-- _Próxima questão, revisão ou entrega prevista._
+- Re-executar notebook (Restart & Run All) para sincronizar outputs da seção 7b
+- Iniciar Q2 com `/iniciar-questao Q2` e depois `/tratar`
 
 ## Ponteiros
 - Status por questão: [question-status.md](question-status.md)

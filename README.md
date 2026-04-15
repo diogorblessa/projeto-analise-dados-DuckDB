@@ -71,6 +71,7 @@ Depois, no VS Code, selecione esse interpretador global e use-o tambem como kern
 
 - `docs/PRD.md` e a unica norma humana de escopo, padroes e aceite.
 - `CLAUDE.md` e a politica persistente de operacao para IA dentro deste workspace.
+- `docs/playbook_subagentes.md` consolida quando usar `@code-reviewer` e `@business-reporter`, com templates curtos de invocacao.
 - `memory-bank/active-context.md` e `memory-bank/question-status.md` sao a porta de entrada para retomar sessoes.
 - `memory-bank/review-checklist.md` concentra o estado persistente da revisao.
 - `README.md` e apenas descritivo; status vivo do trabalho deve existir em `memory-bank/`.
@@ -79,6 +80,7 @@ Depois, no VS Code, selecione esse interpretador global e use-o tambem como kern
 
 - PRD: [docs/PRD.md](docs/PRD.md)
 - Enunciado: [docs/instrucoes_desafio.md](docs/instrucoes_desafio.md)
+- Playbook de subagents: [docs/playbook_subagentes.md](docs/playbook_subagentes.md)
 - Notebook principal: [notebooks/case_techshop.ipynb](notebooks/case_techshop.ipynb)
 - DuckDB: <https://duckdb.org/docs/>
 - uv docs: <https://docs.astral.sh/uv/>

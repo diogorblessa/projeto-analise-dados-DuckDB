@@ -26,6 +26,7 @@
 
 ## Contexto modular
 - `@code-reviewer`: apoio ad hoc para notebook `[CODE]` e `sql/q3_*.sql`, priorizando achados acionaveis, contexto tecnico curto e sugestoes seguras; nao substitui `/revisar-questao` nem `/revisao-final`.
+- `docs/playbook_subagentes.md`: contrato operacional para decidir quando invocar `@code-reviewer` e `@business-reporter`, com escopo por bloco e templates de prompt.
 - `.claude/rules/project-globals.md`: regras globais do repo, incluindo premissas, simplicidade, escopo cirúrgico e verificação.
 - `.claude/rules/notebook-base.md`: estrutura do notebook e roteamento por skill.
 - `.claude/rules/analysis-writing.md`, `visualization.md` e `sql-conventions.md`: regras escopadas por caminho.

@@ -11,8 +11,8 @@ Use [reference.md](reference.md) como guia detalhado deste workflow.
 
 ## Fluxo
 1. Carregue apenas a seção Q4 do `docs/PRD.md`, o notebook e [reference.md](reference.md).
-2. Compare Sul (`RS`, `SC`, `PR`) com o resto do país nas métricas relevantes.
-3. Encerre com recomendação explícita e limitações declaradas.
+2. **Fase 1 — código**: escreva o `[CODE]` com as comparações Sul vs. resto. Pare e peça ao usuário para executar.
+3. **Fase 2 — recomendação**: somente após outputs visíveis, escreva análise e recomendação explícita com limitações, referenciando os valores reais.
 4. Atualize `memory-bank/decisions.md` com a recomendação final.
 
 ## Restrições
