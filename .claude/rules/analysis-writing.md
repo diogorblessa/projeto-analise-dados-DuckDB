@@ -18,7 +18,7 @@ Use ao escrever ou revisar células `[MD analise]`.
 - Declare trade-offs e limitações quando aplicável.
 - Ao citar conceito técnico, defina-o em uma frase curta antes da interpretação.
 - Conecte o achado a questão alvo do PRD.
-- Linguagem direta, sem jargão desnecessário.
+- Linguagem direta e clara, sem jargão técnico desnecessário.
 
 ## Formatacao
 - Números, percentuais e valores monetários entre crases.

@@ -1,3 +1,16 @@
+## Errata — Reconciliação CODE vs MD (2026-04-15)
+
+- **Concluído:**
+  - Auditoria de rastreabilidade entre output visível do `[CODE]` (Q1) e narrativa do `[MD análise]` aplicada em `ee3d6570`.
+  - Matriz com status `explícito` / `derivado direto` / `não visível` adicionada no `[MD análise]`, junto das três listas: calculado e não comentado, relevante para negócio, e inconsistências.
+  - Trechos de `valor_unit`/`10x` reconciliados por evidência estrita: mantido o que é explícito no output e removidas contagens não visíveis.
+  - DI-012 em `data-issues.md` revisado para evidência estrita, sem apagar histórico anterior.
+
+- **Observação de histórico:**
+  - Entradas antigas de handoff/checklist foram preservadas e permanecem como registro de contexto da época.
+
+---
+
 # Handoff
 
 Transferência entre sessões. Atualize ao encerrar uma sessão com trabalho não concluído e mantenha este arquivo sincronizado com `active-context.md` e `question-status.md`.

@@ -35,3 +35,10 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 | RF-001 | /revisao-final | applied | ee3d6570 corrigido: dois trechos "produtos legítimos" substituídos por distinção explícita entre Monitor 32" 4K/Monitor 27" 144Hz (legítimos, 113 registros) e 4 produtos com erro 10x (5 registros candidatos a correção em Q2) | 2026-04-15 |
 | RF-002 | /revisao-final | applied | DI-012 adicionado em memory-bank/data-issues.md: valor_unit, inconsistencia_cruzada, H, 6 produtos, 8 registros, razao_max_min=10.0 | 2026-04-15 |
 | RF-003 | /revisao-final | applied | Parágrafo "Consistência interna de preço por produto (bloco 7c)" adicionado em ee3d6570 após o blockquote da tabela IQR de 8 linhas; descreve 6 produtos, 8 registros, distinção IQR vs. abaixo do limite | 2026-04-15 |
+
+## Errata — Reconciliação CODE vs MD (2026-04-15)
+
+| id | source | status_final | resolucao | updated_at |
+|---|---|---|---|---|
+| ER-Q1-001 | /reconciliar-q1 | applied | `[MD análise]` de Q1 (`ee3d6570`) atualizado com matriz de rastreabilidade e listas obrigatórias (calculado e não comentado; relevante para negócio; inconsistências), removendo contagens sem evidência explícita no output | 2026-04-15 |
+| ER-Q1-002 | /reconciliar-q1 | applied | DI-012 em `memory-bank/data-issues.md` ajustado para evidência estrita: mantidos `6` produtos com razão `10x`, `118` acima do limite IQR e `5` suspeitos acima do limite; sem afirmar total consolidado não visível no output | 2026-04-15 |
