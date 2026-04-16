@@ -25,7 +25,7 @@ receita_por_produto AS (
 SELECT
     produto,
     receita_liquida,
-    unidades_vendidas,
+    CAST(unidades_vendidas AS INTEGER) AS unidades_vendidas,
     pedidos
 FROM receita_por_produto
 ORDER BY receita_liquida DESC

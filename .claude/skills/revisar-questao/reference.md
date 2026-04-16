@@ -21,6 +21,11 @@
 - Em `--auditar`, registrar achados em `memory-bank/review-checklist.md` com IDs `RQ-{Q}-NNN`, sem editar notebook.
 - Em `--corrigir`, aplicar somente correções `objetiva` que continuem válidas; deixar `manual` como `blocked`.
 - Atualizar `memory-bank/question-status.md`.
+- Na resposta final, sempre incluir uma seção `Checklist PASS/FAIL` com tabela Markdown compacta `requisito | status`, usando `memory-bank/review-checklist.md` como fonte de verdade.
+- Em `/revisar-questao QN` ou `/revisar-questao QN,QM`, filtrar o `Final Checklist Cache` por prefixo de requisito (`Q1 —`, `Q2 —`, etc.) para manter apenas linhas das questões em escopo.
+- Preservar a ordem já existente no `Final Checklist Cache` e excluir itens globais fora do escopo atual.
+- Se não houver linhas compatíveis com o escopo, escrever explicitamente que não há critérios cacheados para a revisão atual.
+- Manter resumo, achados abertos e observações existentes; a tabela complementa a resposta, não substitui o restante da auditoria.
 
 ## Restrições
 - Escopos inválidos interrompem a tarefa.

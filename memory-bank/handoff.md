@@ -1,3 +1,56 @@
+## Reauditoria — Q3 retorna a done (2026-04-16)
+
+- **Concluído:**
+  - Correção manual aplicada em `f64d2ab1`: Q3.b agora imprime um sanity-check local que reconstrói a base após DI-009 e antes de DI-007, sem alterar `sql/q3_b_taxas_categoria.sql`
+  - O novo output mostra `delta total = 12` e o comparativo por categoria que sustenta a ressalva do `[MD análise]`: `Acessórios` `231→228`, `Armazenamento` `219→215`, `Câmeras` `121→120`, `Impressoras` `171→169`, `Monitores` `183→182`, `Periféricos` `270→269`
+  - Reauditoria de Q3 concluída sem achados remanescentes; `RQ-Q3-004` fechado
+  - `review-checklist.md`: Open Findings = 0; `Q3 — afirmações rastreáveis a output visível` voltou para `PASS`
+  - `question-status.md`: Q3 = `done`; `active-context.md` devolvido para foco em Q4
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** nenhum
+
+- **Próximo passo:** `/iniciar-questao Q4` → `/analisar-negocio`
+
+---
+
+## Reauditoria — Q3 volta para review (2026-04-16)
+
+- **Concluído:**
+  - `/revisar-questao Q3 --auditar` executada sobre o working tree atual, preservando as mudanças locais já existentes em notebook, SQL e `memory-bank`
+  - Validação funcional mantida para Q3.a/Q3.b/Q3.c/Q3.d: estrutura `[MD explicação] → [CODE] → [MD análise]`, aderência ao PRD (§Q3) e carregamento de `sql/q3_*.sql` no notebook continuam corretos
+  - Queries `sql/q3_a_top5_receita.sql`, `sql/q3_b_taxas_categoria.sql`, `sql/q3_c_clientes_recorrentes.sql` e `sql/q3_d_ticket_uf.sql` reexecutadas sobre `data/interim/ecommerce_tratado.csv`; resultados-chave permaneceram sincronizados com os outputs salvos no notebook
+  - `RQ-Q3-004` aberto em `473e73d9`: a última ressalva de Q3.b cruza com Q2/DI-007 sem evidência visível no output local `f64d2ab1`
+  - `review-checklist.md` atualizado: `last_writer = /revisar-questao Q3 --auditar`, `Open Findings = 1`, critério `Q3 — afirmações rastreáveis a output visível` rebaixado para `FAIL`
+  - `question-status.md`: Q3 = `review`; `active-context.md` sincronizado com foco em Q3
+
+- **Pendente:**
+  - Resolver `RQ-Q3-004` com ajuste manual no `[MD análise]` de Q3.b ou com evidência adicional local na CODE `f64d2ab1`
+
+- **Bloqueios:** nenhum
+
+- **Próximo passo:** corrigir `RQ-Q3-004` e rodar `/revisar-questao Q3 --auditar` novamente; só então retomar Q4
+
+---
+
+## Encerramento — Q3 como done (2026-04-16)
+
+- **Concluído:**
+  - `/revisar-questao Q3 --corrigir`: `RQ-Q3-001` aplicado em `ed84982c`, removendo as contagens `270`/`231` e a referência cruzada a Q2 no `[MD análise]` de Q3.a
+  - `/revisar-questao Q3 --corrigir`: `RQ-Q3-002` aplicado em `f692c88f` e `23a34e6d`, com prints intermediários para top-2 vs. `3º`-`5º` em Q3.c e para razões/participação em Q3.d
+  - `/revisar-questao Q3 --corrigir`: `RQ-Q3-003` aplicado com `CAST(... AS INTEGER)` em `sql/q3_a_top5_receita.sql` e `sql/q3_b_taxas_categoria.sql`
+  - Notebook executado por completo via `nbconvert --execute --inplace`; outputs de Q3 sincronizados e critério global de `Restart & Run All` validado
+  - `review-checklist.md`: Open Findings = 0; `Q3 — afirmações rastreáveis a output visível` agora em PASS; `question-status.md`: Q3 = `done`
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** nenhum
+
+- **Próximo passo:** `/iniciar-questao Q4` → `/analisar-negocio`
+
+---
+
 ## Encerramento — Q2 como done (2026-04-15)
 
 - **Concluído:**
@@ -89,7 +142,7 @@ Transferência entre sessões. Atualize ao encerrar uma sessão com trabalho nã
 ## Encerramento — Q1 (2026-04-14)
 
 - **Concluído:**
-  - Bloco 2 gerado no notebook com padrão `[MD explicacao] → [CODE] → [MD análise]`
+  - Bloco 2 gerado no notebook com padrão `[MD explicação] → [CODE] → [MD análise]`
   - `[CODE]` cobre 9 seções: shape/tipos, nulos, missing disfarçado, duplicatas, domínios, estatísticas, validação de domínio (7a), outliers IQR com ambos os limites (7b), cruzamento avaliacao×status, datas
   - `[MD análise]` reescrito com framing de negócio explícito: tabela de nulos com coluna de impacto downstream, seção "O que isso significa para o negócio" e seção "Ressalvas"
   - `memory-bank/data-issues.md` populado com DI-001 a DI-011 (todos `open`)

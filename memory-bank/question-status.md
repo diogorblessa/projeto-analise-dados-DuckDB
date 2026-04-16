@@ -4,9 +4,9 @@ Status de cada questão do PRD.
 
 | Questão | Status | Última atualização | Comentário |
 |---|---|---|---|
-| Q1 - Diagnóstico | done | 2026-04-15 | concluida |
-| Q2 - Tratamento | done | 2026-04-15 | concluida |
-| Q3 - SQL | review | 2026-04-16 | auditada: 3 achados baixa severidade (RQ-Q3-001..003) |
+| Q1 - Diagnóstico | done | 2026-04-15 | concluída |
+| Q2 - Tratamento | done | 2026-04-15 | concluída |
+| Q3 - SQL | done | 2026-04-16 | RQ-Q3-005 aplicado: 202b9438 corrigida (15→12 pedidos sem UF, 98,7%→98,6% cobertura) |
 | Q4 - Negócio | not_started | - | - |
 | Q5 - Debug | not_started | - | - |
 | Q6 - Modelagem | not_started | - | - |

@@ -13,6 +13,9 @@
 - Ao revisar código, consultar `.claude/rules/code-style.md` para encoding, `PEP 8` pragmático e nomenclatura.
 - Em `--corrigir`, aplicar somente itens `open` com `fix_class=objetiva` que continuem válidos.
 - Em `--corrigir`, marcar `stale` o que já não se aplica e `blocked` o que exigir decisão.
+- Na resposta final, sempre incluir uma seção `Checklist PASS/FAIL` com tabela Markdown compacta `requisito | status`.
+- Em `/revisao-final`, a tabela deve espelhar todo o `Final Checklist Cache`, na ordem persistida em `memory-bank/review-checklist.md`.
+- Manter resumo, achados e observações existentes; a tabela é um resumo de saída, não substitui a evidência persistida.
 
 ## Mapa de referências por questão
 - Q1 -> [../diagnosticar/reference.md](../diagnosticar/reference.md)

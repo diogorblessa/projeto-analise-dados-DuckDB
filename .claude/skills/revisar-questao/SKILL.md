@@ -17,6 +17,9 @@ Use [reference.md](reference.md) como fluxo principal e [../shared/review-memory
 3. Consulte as referências das questões em escopo antes de auditar ou corrigir.
 4. Em `--auditar`, registre apenas achados acionáveis e rastreáveis.
 5. Em `--corrigir`, aplique somente correções `objetiva` que continuem válidas.
+6. Na resposta final, mantenha o resumo da revisão e inclua uma seção `Checklist PASS/FAIL` com tabela Markdown compacta `requisito | status`, baseada no `Final Checklist Cache`.
+7. Em escopo `QN` ou `QN,QM`, filtre a tabela por prefixo de requisito (`Q1 —`, `Q2 —`, etc.) para exibir apenas as questões pedidas, preservando a ordem já registrada no `Final Checklist Cache`.
+8. Se não houver critérios cacheados compatíveis com o escopo, declare isso explicitamente em vez de inventar uma tabela vazia.
 
 ## Restrições
 - Escopos inválidos interrompem a tarefa.

@@ -13,7 +13,7 @@ WITH resumo_categoria AS (
 SELECT
     categoria,
     total_pedidos,
-    nao_concluidos,
+    CAST(nao_concluidos AS INTEGER) AS nao_concluidos,
     ROUND(
         100.0 * nao_concluidos / NULLIF(total_pedidos, 0),
         2

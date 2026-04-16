@@ -5,18 +5,17 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 > Autoridade: `docs/PRD.md` define escopo, padrões e aceite. `docs/instrucoes_desafio.md` é contexto histórico. `memory-bank/` registra toda a continuidade operacional persistente. Só um registro aceito em `decisions.md` com `override_of` e `aprovacao` explícitos pode ajustar o item correspondente do PRD. Status vivo fora de `memory-bank/` deve ser tratado como descritivo ou potencialmente desatualizado.
 
 ## Foco atual
-- Q3 - SQL — `review`
+- Q4 - Negócio — `not_started`
 - Data: 2026-04-16
 
 ## Skill ou fluxo ativo
 - `/revisar-questao Q3 --auditar` (concluída)
 
 ## Decisões aguardando validação
-- `RQ-Q3-002`: aceitar derivações aritméticas simples em `[MD analise]` (Q3.c e Q3.d) como prática ou exigir print intermediário em CODE
+- Nenhuma.
 
 ## Próximo marco
-- Resolver ou aceitar `RQ-Q3-001..003` via `/revisar-questao Q3 --corrigir` (aplicar objetivas, tratar manuais)
-- Avançar para Q4 com `/iniciar-questao Q4` → `/analisar-negocio`
+- Iniciar Q4 com `/iniciar-questao Q4` → `/analisar-negocio`
 
 ## Ponteiros
 - Status por questão: [question-status.md](question-status.md)
