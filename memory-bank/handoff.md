@@ -1,3 +1,21 @@
+## Encerramento formal - Q4 auditada e sincronizada (2026-04-16)
+
+- **Concluído:**
+  - `/revisar-questao Q4 --auditar` reexecutada sobre o bloco 5 com conferência local dos KPIs a partir de `data/interim/ecommerce_tratado.csv`
+  - Números confirmados: Sul `250` pedidos, `R$ 198.494,70`, ticket `R$ 793,98`; demais regiões `918` pedidos, ticket `R$ 763,62`; cancelamento/devolução `17,60%` vs `18,74%`; avaliação `3,87` vs `3,93`; `SC` `R$ 1.122,54`, `PR` `R$ 729,15`, `RS` `R$ 582,92`; sazonalidade do Sul `R$ 5.206,90` a `R$ 32.150,50`
+  - Bloco 5 normalizado: travessões longos removidos das células markdown `a4831bc2` e `q4_sul_fase1_analise`, sem alterar números ou achados
+  - `review-checklist.md` sincronizado com a recomendação vigente `prosseguir com ressalvas` e com `Q4-002` como decisão aceita; `RQ-Q4-003` e `RQ-Q4-004` registrados em Applied/Closed
+  - Verificação de encoding concluída: sem mojibake real nos arquivos; o ruído observado era artefato de exibição do shell
+  - `question-status.md` e `active-context.md` atualizados para devolver o foco a Q5
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** Q5, Q6 e Q7 ainda estão como placeholders no notebook
+
+- **Próximo passo:** `/iniciar-questao Q5` -> `/encontrar-erro`
+
+---
+
 ## Encerramento formal — Q3 como done (2026-04-16)
 
 - **Concluído:**

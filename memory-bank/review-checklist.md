@@ -6,7 +6,7 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 - `schema_version`: 1
 - `notebook`: `notebooks/case_techshop.ipynb`
 - `last_updated`: 2026-04-16
-- `last_writer`: /revisar-questao Q3 --auditar
+- `last_writer`: /revisar-questao Q4 --auditar
 
 ## Open Findings
 Nenhum achado aberto.
@@ -35,7 +35,13 @@ Nenhum achado aberto.
 | Q3 — uso de `receita` canônica e `cliente_anonimo = FALSE` onde aplicável | PASS | `SUM(receita)` em Q3.a/Q3.c/Q3.d; filtro `cliente_anonimo = FALSE` em Q3.c; Q3.b usa contagens porque métrica é taxa | Consistente com decisão de Q2 (DI-001, coluna canônica `receita`) | /revisar-questao Q3 --auditar | 2026-04-16 |
 | Q3 — código Python PEP8 com nomenclatura descritiva | PASS | `top5_receita_90d`, `taxas_cancelamento_por_categoria`, `clientes_recorrentes`, `ticket_medio_por_uf`, `total_clientes_identificados`, `pedidos_entregues_total`, `pedidos_considerados` | snake_case, descritivas, sem `n_*`/`mask_*` (feedback de memória respeitado) | /revisar-questao Q3 --auditar | 2026-04-16 |
 | Q3 — consistência de filtros de status entre subquestões | PASS | Q3.a e Q3.c: `NOT IN ('cancelado','devolvido')`; Q3.b: todos os status (denominador); Q3.d: `= 'entregue'` (receita realizada) | Cada filtro coerente com a métrica pedida pelo PRD | /revisar-questao Q3 --auditar | 2026-04-16 |
-| Q4–Q7 — implementadas | FAIL | Q4, Q5, Q6 e Q7 com placeholders apenas (`a4831bc2`, `d24bda53`, `f1961177`, `76f81a84`) | Blocker global; não impede fechamento de Q1, Q2 e Q3 isolados | /revisar-questao Q3 --auditar | 2026-04-16 |
+| Q4 - estrutura [MD explicação] → [CODE] → [MD análise] | PASS | `a4831bc2` → `q4_sul_fase1` → `q4_sul_fase1_analise` | 3 células presentes com conteúdo completo | /revisar-questao Q4 --auditar | 2026-04-16 |
+| Q4 - entregáveis mínimos (KPI 1-5: volume/receita/ticket, cancelamento, avaliação, mix categoria, tendência mensal) | PASS | `q4_sul_fase1`: KPI 1 agregado + desdobramento UF; KPI 2 taxa cancel+devol; KPI 3 avaliação; KPI 4 mix categoria; KPI 5 tendência mensal + gráfico | Todos os 5 KPIs exigidos pela reference.md presentes e com output | /revisar-questao Q4 --auditar | 2026-04-16 |
+| Q4 - recomendação explícita (`prosseguir`/`prosseguir com ressalvas`/`não prosseguir`) com fundamentação numérica | PASS | `q4_sul_fase1_analise`: "Recomendação: `prosseguir com ressalvas`..." com H1-H4 testadas e números rastreáveis ao output de `q4_sul_fase1` | Todos os números cross-checados sem divergência; checklist sincronizado com a decisão vigente | /revisar-questao Q4 --auditar | 2026-04-16 |
+| Q4 - limitações declaradas e decisions.md atualizado | PASS | `q4_sul_fase1_analise`: 6 limitações explícitas (incl. disclosure KPI 1/4 status); `memory-bank/decisions.md` Q4-002 como decisão aceita | RQ-Q4-002 aplicado e evidência sincronizada | /revisar-questao Q4 --auditar | 2026-04-16 |
+| Q4 - afirmações rastreáveis a output visível (célula imediata) | PASS | H1-H3, interpretação de mix e volatilidade mensal: todos os valores batem com tabelas/prints de `q4_sul_fase1` | - | /revisar-questao Q4 --auditar | 2026-04-16 |
+| Q4 - código PEP8, nomenclatura descritiva | PASS | `kpis_regiao`, `kpis_por_uf_sul`, `taxas_cancelamento_regiao`, `avaliacao_media_regiao`, `mix_categoria_sul_vs_resto`, `tendencia_mensal_sul_vs_resto` | RQ-Q4-001 aplicado: `SUL` constant morta removida | /revisar-questao Q4 --corrigir | 2026-04-16 |
+| Q5-Q7 - implementadas | FAIL | Q5, Q6 e Q7 com placeholders apenas (`d24bda53`, `f1961177`, `76f81a84`) | Blocker global; não impede fechamento de Q1-Q4 isolados | /revisar-questao Q4 --auditar | 2026-04-16 |
 
 ## Applied/Closed
 | id | source | status_final | resolucao | updated_at |
@@ -52,6 +58,10 @@ Nenhum achado aberto.
 | RQ-Q3-003 | /revisar-questao Q3 --corrigir | applied | `CAST(... AS INTEGER)` aplicado em `sql/q3_a_top5_receita.sql` (`unidades_vendidas`) e `sql/q3_b_taxas_categoria.sql` (`nao_concluidos`); outputs reexecutados sem `.0` | 2026-04-16 |
 | RQ-Q3-004 | /revisar-questao Q3 --auditar | applied | `f64d2ab1` recebeu sanity-check local que reconstrói a base após DI-009 e antes de DI-007, exibindo `delta total = 12` e comparativo por categoria (`Acessórios` 231→228, `Armazenamento` 219→215, `Câmeras` 121→120, `Impressoras` 171→169, `Monitores` 183→182, `Periféricos` 270→269) | 2026-04-16 |
 | RQ-Q3-005 | /revisar-questao Q3 --corrigir | applied | Célula `202b9438` (Q3.d [MD explicação]): `15 pedidos sem UF` corrigido para `12`; `98,7%` corrigido para `98,6%`. Valores agora consistentes com output de célula `23a34e6d` e análise de célula `6e8b4428`. | 2026-04-16 |
+| RQ-Q4-001 | /revisar-questao Q4 --corrigir | applied | `SUL = ("RS", "SC", "PR")` removido de `q4_sul_fase1`; variável definida mas nunca usada (todas as queries hardcodeiam os valores). | 2026-04-16 |
+| RQ-Q4-002 | /revisar-questao Q4 --corrigir | applied | Bullet adicionado nas limitações de `q4_sul_fase1_analise`: KPI 1 e KPI 4 incluem pedidos de todos os status; comparações são internamente consistentes mas totais de `receita_total` não equivalem a receita realizada; KPI 5 usa apenas pedidos concluídos conforme declarado no [MD explicação]. | 2026-04-16 |
+| RQ-Q4-003 | /revisar-questao Q4 --auditar | applied | Checklist Q4 sincronizado com a recomendação vigente `prosseguir com ressalvas` e com `Q4-002` como decisão aceita. | 2026-04-16 |
+| RQ-Q4-004 | /revisar-questao Q4 --auditar | applied | Travessões longos removidos do bloco 5 da Q4 e das linhas novas desta rodada no memory-bank; números e achados preservados. | 2026-04-16 |
 
 ## Errata — Reconciliação CODE vs MD (2026-04-15)
 
