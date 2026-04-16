@@ -1,3 +1,21 @@
+## Encerramento — Q2 como done (2026-04-15)
+
+- **Concluído:**
+  - `/revisar-questao Q2 --auditar`: RQ-Q2-001 (M) e RQ-Q2-002 (L) identificados e registrados — DI-010 sem before-count em ae4bb233; DI-012 before-range mínimo não visível em ae4bb233
+  - `/revisar-questao Q2 --corrigir`: ambos aplicados — `registros_formato_dmy` + print antes do regex+parse (DI-010); print de range antes do loop de correção (DI-012)
+  - Re-auditoria Q2: nenhum achado remanescente; todos os 6 critérios do PRD em PASS
+  - `review-checklist.md`: Open Findings = 0; RQ-Q2-001 e RQ-Q2-002 em Applied/Closed; 6 entradas Q2 no Final Checklist Cache (todas PASS)
+  - `question-status.md`: Q2 = `done`
+  - Dataset tratado: `data/interim/ecommerce_tratado.csv` (1.183 × 13) disponível como insumo para Q3..Q7
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** nenhum (re-execução Restart & Run All é bloqueio global pendente desde Q1, não específico de Q2)
+
+- **Próximo passo:** `/iniciar-questao Q3` → `/consultar-sql` usando `data/interim/ecommerce_tratado.csv`
+
+---
+
 ## Errata — Reconciliação CODE vs MD (2026-04-15)
 
 - **Concluído:**

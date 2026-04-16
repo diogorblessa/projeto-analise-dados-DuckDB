@@ -10,7 +10,6 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 
 ## Open Findings
 | id | source | escopo | severidade | tipo | celulas | evidencia | sugestao | fix_class | status |
-|---|---|---|---|---|---|---|---|---|---|
 
 ## Final Checklist Cache
 | requisito | status | evidencia | observacao | source | updated_at |
@@ -23,7 +22,13 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 | Q1 — data-issues.md cataloga todos os achados (DI-001..DI-012) | PASS | DI-012 adicionado: dispersão 10x, 6 produtos, 8 registros, severidade H | RF-002 aplicado | /revisar-questao Q1 --corrigir | 2026-04-15 |
 | Q1 — bloco 7c referenciado na narrativa | PASS | Parágrafo "Consistência interna de preço por produto (bloco 7c)" adicionado em ee3d6570 | RF-003 aplicado | /revisar-questao Q1 --corrigir | 2026-04-15 |
 | Q1 — código PEP8, nomenclatura descritiva | PASS | dispersao_valor_unit, produtos_divergentes, avaliacao_por_status — conformes com code-style.md | - | /revisao-final Q1 | 2026-04-15 |
-| Q2–Q7 — implementadas | FAIL | Não iniciadas (placeholders apenas) | Blocker global; não impede fechamento de Q1 isolado | /revisao-final Q1 | 2026-04-15 |
+| Q2 — estrutura [MD explicação] → [CODE] → [MD análise] | PASS | 24167198 → ae4bb233 → da751df3 | - | /revisar-questao Q2 --auditar | 2026-04-15 |
+| Q2 — cobertura de todos os tratamentos (DI-001..DI-012) | PASS | ae4bb233 cobre todos os 12 DIs; DI-005, DI-006 mantidos com justificativa | - | /revisar-questao Q2 --auditar | 2026-04-15 |
+| Q2 — antes e depois por tratamento com justificativa explícita | PASS | RQ-Q2-001 aplicado: DI-010 before-count adicionado em ae4bb233 | - | /revisar-questao Q2 --corrigir | 2026-04-15 |
+| Q2 — afirmações rastreáveis a output visível (célula imediata) | PASS | RQ-Q2-001 e RQ-Q2-002 aplicados | - | /revisar-questao Q2 --corrigir | 2026-04-15 |
+| Q2 — código PEP8, nomes descritivos, imports centralizados | PASS | linhas_antes_dedup, registros_formato_dmy, produtos_10x, precos_corrigidos — conformes | - | /revisar-questao Q2 --auditar | 2026-04-15 |
+| Q2 — desconto_pct canônico, receita derivada, UTF-8 | PASS | rename aplicado; receita = qtd × valor_unit × (1 - desconto_pct/100); encoding='utf-8' no save | - | /revisar-questao Q2 --auditar | 2026-04-15 |
+| Q3–Q7 — implementadas | FAIL | Não iniciadas (placeholders apenas) | Blocker global; não impede fechamento de Q1 e Q2 isolados | /revisao-final Q1 | 2026-04-15 |
 
 ## Applied/Closed
 | id | source | status_final | resolucao | updated_at |
@@ -42,3 +47,5 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 |---|---|---|---|---|
 | ER-Q1-001 | /reconciliar-q1 | applied | `[MD análise]` de Q1 (`ee3d6570`) atualizado com matriz de rastreabilidade e listas obrigatórias (calculado e não comentado; relevante para negócio; inconsistências), removendo contagens sem evidência explícita no output | 2026-04-15 |
 | ER-Q1-002 | /reconciliar-q1 | applied | DI-012 em `memory-bank/data-issues.md` ajustado para evidência estrita: mantidos `6` produtos com razão `10x`, `118` acima do limite IQR e `5` suspeitos acima do limite; sem afirmar total consolidado não visível no output | 2026-04-15 |
+| RQ-Q2-001 | /revisar-questao Q2 --corrigir | applied | Adicionado `registros_formato_dmy = df['data_pedido'].str.match(r'^\d{2}/\d{2}/\d{4}$').sum()` e print do before-count antes do regex+parse em ae4bb233. DI-010 agora mostra antes (20) e depois (0 NaT) na própria célula. | 2026-04-15 |
+| RQ-Q2-002 | /revisar-questao Q2 --corrigir | applied | Adicionado `print(f"DI-012 \| valor_unit range antes: R$...")` antes do loop de correção em ae4bb233. Before-range agora visível no output de Q2. | 2026-04-15 |
