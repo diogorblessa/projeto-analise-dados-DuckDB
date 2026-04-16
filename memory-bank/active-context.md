@@ -9,7 +9,7 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 - Data: 2026-04-16
 
 ## Skill ou fluxo ativo
-- `/revisar-questao Q3 --auditar` (concluída)
+- `/encerrar-questao Q3 done` (concluída)
 
 ## Decisões aguardando validação
 - Nenhuma.

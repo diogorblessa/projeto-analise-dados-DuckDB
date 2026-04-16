@@ -1,3 +1,18 @@
+## Encerramento formal — Q3 como done (2026-04-16)
+
+- **Concluído:**
+  - `/revisar-questao Q3 --auditar` executada em modo re-auditoria; todos os 7 critérios do Final Checklist Cache confirmados como PASS
+  - Nenhum achado novo registrado (próximo ID seria RQ-Q3-006); `review-checklist.md` sem alteração
+  - `question-status.md`: nota atualizada para `concluída`; status permanece `done`
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** nenhum
+
+- **Próximo passo:** `/iniciar-questao Q4` → `/analisar-negocio`
+
+---
+
 ## Reauditoria — Q3 retorna a done (2026-04-16)
 
 - **Concluído:**
