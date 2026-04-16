@@ -5,7 +5,7 @@ Status de cada questão do PRD.
 | Questão | Status | Última atualização | Comentário |
 |---|---|---|---|
 | Q1 - Diagnóstico | done | 2026-04-15 | concluida |
-| Q2 - Tratamento | in_progress | 2026-04-15 | iniciando |
+| Q2 - Tratamento | done | 2026-04-15 | concluida |
 | Q3 - SQL | not_started | - | - |
 | Q4 - Negócio | not_started | - | - |
 | Q5 - Debug | not_started | - | - |
