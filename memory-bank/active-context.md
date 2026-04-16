@@ -5,11 +5,11 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 > Autoridade: `docs/PRD.md` define escopo, padrões e aceite. `docs/instrucoes_desafio.md` é contexto histórico. `memory-bank/` registra toda a continuidade operacional persistente. Só um registro aceito em `decisions.md` com `override_of` e `aprovacao` explícitos pode ajustar o item correspondente do PRD. Status vivo fora de `memory-bank/` deve ser tratado como descritivo ou potencialmente desatualizado.
 
 ## Foco atual
-- Q4 - Negócio — `not_started`
+- Q4 - Negócio — `in_progress`
 - Data: 2026-04-16
 
 ## Skill ou fluxo ativo
-- `/encerrar-questao Q3 done` (concluída)
+- `/analisar-negocio`
 
 ## Decisões aguardando validação
 - Nenhuma.
