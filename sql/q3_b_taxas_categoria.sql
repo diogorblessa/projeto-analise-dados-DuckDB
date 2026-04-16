@@ -1,8 +1,8 @@
--- Q3.b: Categorias ordenadas por taxa de cancelamento e devolução.
--- Inclui status 'cancelado' e 'devolvido' no numerador da taxa.
--- Fonte: dataset tratado em Q2 (view `vendas`).
+-- Q3.b: Taxa de cancelamento e devolucao por categoria.
+-- Numerador: status `cancelado` + `devolvido`.
+-- Fonte esperada: view `vendas` no DuckDB in-memory.
 
-WITH contagem AS (
+WITH resumo_categoria AS (
     SELECT
         categoria,
         COUNT(*) AS total_pedidos,
@@ -14,6 +14,9 @@ SELECT
     categoria,
     total_pedidos,
     nao_concluidos,
-    ROUND(100.0 * nao_concluidos / total_pedidos, 2) AS taxa_cancelamento_devolucao_pct
-FROM contagem
+    ROUND(
+        100.0 * nao_concluidos / NULLIF(total_pedidos, 0),
+        2
+    ) AS taxa_cancelamento_devolucao_pct
+FROM resumo_categoria
 ORDER BY taxa_cancelamento_devolucao_pct DESC;

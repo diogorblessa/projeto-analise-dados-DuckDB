@@ -6,7 +6,7 @@ Status de cada questão do PRD.
 |---|---|---|---|
 | Q1 - Diagnóstico | done | 2026-04-15 | concluida |
 | Q2 - Tratamento | done | 2026-04-15 | concluida |
-| Q3 - SQL | not_started | - | - |
+| Q3 - SQL | review | 2026-04-16 | auditada: 3 achados baixa severidade (RQ-Q3-001..003) |
 | Q4 - Negócio | not_started | - | - |
 | Q5 - Debug | not_started | - | - |
 | Q6 - Modelagem | not_started | - | - |

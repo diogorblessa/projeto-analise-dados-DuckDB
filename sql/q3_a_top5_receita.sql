@@ -1,36 +1,32 @@
--- Q3.a: Top 5 produtos por receita líquida nos últimos 90 dias do dataset.
--- Referência temporal: MAX(data_pedido) do próprio dataset (não data de execução).
--- Fonte: dataset tratado em Q2 (registrado como view `vendas` no DuckDB in-memory).
+-- Q3.a: Top 5 produtos por receita liquida nos ultimos 90 dias.
+-- Janela: MAX(data_pedido) - INTERVAL 90 DAY.
+-- Fonte esperada: view `vendas` no DuckDB in-memory com coluna `receita` derivada em Q2.
 
-WITH janela AS (
-    -- Última data disponível no dataset como âncora dos 90 dias
-    SELECT MAX(data_pedido) - INTERVAL 90 DAYS AS data_inicio
+WITH vendas_validas AS (
+    -- Remove pedidos nao concluidos e aplica janela de 90 dias a partir da data mais recente.
+    SELECT
+        pedido_id,
+        produto,
+        qtd,
+        receita
     FROM vendas
+    WHERE status NOT IN ('cancelado', 'devolvido')
+      AND data_pedido >= (SELECT MAX(data_pedido) FROM vendas) - INTERVAL 90 DAY
 ),
-receita_produto AS (
+receita_por_produto AS (
     SELECT
         produto,
-        SUM(qtd * valor_unit * (1 - desconto_pct / 100.0)) AS receita_liquida,
+        ROUND(SUM(receita), 2) AS receita_liquida,
         SUM(qtd) AS unidades_vendidas,
         COUNT(DISTINCT pedido_id) AS pedidos
-    FROM vendas, janela
-    WHERE data_pedido >= janela.data_inicio
-      AND status NOT IN ('cancelado', 'devolvido')
+    FROM vendas_validas
     GROUP BY produto
 )
 SELECT
     produto,
-    ROUND(receita_liquida, 2) AS receita_liquida,
+    receita_liquida,
     unidades_vendidas,
     pedidos
-FROM (
-    SELECT
-        produto,
-        receita_liquida,
-        unidades_vendidas,
-        pedidos,
-        ROW_NUMBER() OVER (ORDER BY receita_liquida DESC) AS rn
-    FROM receita_produto
-) AS ranking
-WHERE rn <= 5
-ORDER BY receita_liquida DESC;
+FROM receita_por_produto
+ORDER BY receita_liquida DESC
+LIMIT 5;

@@ -5,11 +5,14 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 ## Header
 - `schema_version`: 1
 - `notebook`: `notebooks/case_techshop.ipynb`
-- `last_updated`: 2026-04-15
-- `last_writer`: /revisar-questao Q1 --corrigir
+- `last_updated`: 2026-04-16
+- `last_writer`: /revisar-questao Q3 --auditar
 
 ## Open Findings
 | id | source | escopo | severidade | tipo | celulas | evidencia | sugestao | fix_class | status |
+| RQ-Q3-001 | /revisar-questao Q3 --auditar | notebook Q3.a [MD analise] | baixa | rastreabilidade | ed84982c | Menciona contagens `270` (Periféricos) e `231` (Acessórios) atribuindo-as a Q2; esses valores não aparecem no output da célula CODE imediatamente anterior (`8a098bbf`), só em `ae4bb233` (Q2). Violação estrita de `analysis-writing.md` ("evidência visível na célula imediatamente anterior"). | Reformular a frase para (a) citar explicitamente a célula `ae4bb233` ou (b) remover as contagens e manter somente a observação qualitativa sobre categorias de maior volume absoluto. | manual | open |
+| RQ-Q3-002 | /revisar-questao Q3 --auditar | notebook Q3.c e Q3.d [MD analise] | baixa | rastreabilidade | 2bf23d63, 6e8b4428 | Derivações aritméticas cujos operandos são visíveis mas cujo resultado composto não aparece no output: Q3.c soma top-2 (`R$ 24.049,53`) vs. soma das três seguintes (`R$ 19.716,89`); Q3.d razões de amplitude `3,67×` e `2,12×`, participação `28,3%` de SP no volume. | Decisão de equipe: aceitar derivações simples como análise de segunda ordem (manter texto) ou adicionar prints intermediários nas CODEs `f692c88f`/`23a34e6d` para tornar o resultado visível. | manual | blocked |
+| RQ-Q3-003 | /revisar-questao Q3 --auditar | sql/q3_a_top5_receita.sql, sql/q3_b_taxas_categoria.sql | baixa | estilo | 8a098bbf, f64d2ab1 | Colunas de contagem exibidas como float no output: `unidades_vendidas` (`24.0`, `31.0` em Q3.a) e `nao_concluidos` (`59.0`, `38.0` em Q3.b). Tipo é propagado de `qtd Int64` e do resultado de SUM; apresentação inteira seria mais fiel à semântica da métrica. | `CAST(... AS INTEGER)` no SELECT final de `sql/q3_a_top5_receita.sql` (unidades_vendidas) e `sql/q3_b_taxas_categoria.sql` (nao_concluidos). | objetiva | open |
 
 ## Final Checklist Cache
 | requisito | status | evidencia | observacao | source | updated_at |
@@ -28,7 +31,14 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 | Q2 — afirmações rastreáveis a output visível (célula imediata) | PASS | RQ-Q2-001 e RQ-Q2-002 aplicados | - | /revisar-questao Q2 --corrigir | 2026-04-15 |
 | Q2 — código PEP8, nomes descritivos, imports centralizados | PASS | linhas_antes_dedup, registros_formato_dmy, produtos_10x, precos_corrigidos — conformes | - | /revisar-questao Q2 --auditar | 2026-04-15 |
 | Q2 — desconto_pct canônico, receita derivada, UTF-8 | PASS | rename aplicado; receita = qtd × valor_unit × (1 - desconto_pct/100); encoding='utf-8' no save | - | /revisar-questao Q2 --auditar | 2026-04-15 |
-| Q3–Q7 — implementadas | FAIL | Não iniciadas (placeholders apenas) | Blocker global; não impede fechamento de Q1 e Q2 isolados | /revisao-final Q1 | 2026-04-15 |
+| Q3 — implementada (a/b/c/d) com `[MD explicacao] → [CODE] → [MD analise]` | PASS | `5018432c→8a098bbf→ed84982c` (Q3.a); `f23a8f0c→f64d2ab1→473e73d9` (Q3.b); `153a985c→f692c88f→2bf23d63` (Q3.c); `202b9438→23a34e6d→6e8b4428` (Q3.d) | 4 subquestões entregues com Fase 1 e Fase 2 | /revisar-questao Q3 --auditar | 2026-04-16 |
+| Q3 — SQL presente em `sql/q3_*.sql` e reproduzível sobre view `vendas` | PASS | `sql/q3_a_top5_receita.sql`, `sql/q3_b_taxas_categoria.sql`, `sql/q3_c_clientes_recorrentes.sql`, `sql/q3_d_ticket_uf.sql` | Cada arquivo com cabeçalho identificando pergunta respondida e fonte esperada | /revisar-questao Q3 --auditar | 2026-04-16 |
+| Q3 — aderência ao PRD §Q3 (janela 90 dias, taxa cancel+devol, LAG, status entregue) | PASS | Q3.a: `INTERVAL 90 DAY` sobre `MAX(data_pedido)`; Q3.b: `status IN ('cancelado','devolvido')` ordem DESC; Q3.c: `LAG` em grão mensal + gap + grupos acumulados; Q3.d: `status = 'entregue'` | - | /revisar-questao Q3 --auditar | 2026-04-16 |
+| Q3 — afirmações rastreáveis a output visível | PASS com ressalvas | Outputs visíveis em cada CODE (print de ancoragem + display do DataFrame); ressalvas em RQ-Q3-001 (cross-ref Q2) e RQ-Q3-002 (aritmética derivada) | Dominante é PASS; dois pontos narrativos abertos, severidade baixa | /revisar-questao Q3 --auditar | 2026-04-16 |
+| Q3 — uso de `receita` canônica e `cliente_anonimo = FALSE` onde aplicável | PASS | `SUM(receita)` em Q3.a/Q3.c/Q3.d; filtro `cliente_anonimo = FALSE` em Q3.c; Q3.b usa contagens porque métrica é taxa | Consistente com decisão de Q2 (DI-001, coluna canônica `receita`) | /revisar-questao Q3 --auditar | 2026-04-16 |
+| Q3 — código Python PEP8 com nomenclatura descritiva | PASS | `top5_receita_90d`, `taxas_cancelamento_por_categoria`, `clientes_recorrentes`, `ticket_medio_por_uf`, `total_clientes_identificados`, `pedidos_entregues_total`, `pedidos_considerados` | snake_case, descritivas, sem `n_*`/`mask_*` (feedback de memória respeitado) | /revisar-questao Q3 --auditar | 2026-04-16 |
+| Q3 — consistência de filtros de status entre subquestões | PASS | Q3.a e Q3.c: `NOT IN ('cancelado','devolvido')`; Q3.b: todos os status (denominador); Q3.d: `= 'entregue'` (receita realizada) | Cada filtro coerente com a métrica pedida pelo PRD | /revisar-questao Q3 --auditar | 2026-04-16 |
+| Q4–Q7 — implementadas | FAIL | Q4, Q5, Q6 e Q7 com placeholders apenas (`a4831bc2`, `d24bda53`, `f1961177`, `76f81a84`) | Blocker global; não impede fechamento de Q1, Q2 e Q3 isolados | /revisar-questao Q3 --auditar | 2026-04-16 |
 
 ## Applied/Closed
 | id | source | status_final | resolucao | updated_at |
