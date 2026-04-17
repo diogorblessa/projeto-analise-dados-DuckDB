@@ -11,6 +11,7 @@ CLAUDE.local.md
 *.code-workspace
 .editorconfig
 uv.lock
+.jupyter_runtime
 
 # Guia operacional pessoal
 docs/guia_de_execucao.md

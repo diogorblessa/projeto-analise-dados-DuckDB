@@ -1,3 +1,12 @@
+## Q6 bloco redesenhado — aguardando revisão (2026-04-17)
+
+- **Concluído:** bloco 7 (`f1961177`) redesenhado para apresentação visual próxima ao print de referência; Mermaid removido do conteúdo canônico e substituído por `artifacts/diagrams/DER_MODELO_DIMENSIONAL.svg`; modelo exibido passou de estrela para floco de neve leve, com `dim_categoria` separada de `dim_produto`; grão item de pedido preservado; 6 dimensões (`dim_tempo`, `dim_cliente`, `dim_produto`, `dim_categoria`, `dim_localidade`, `dim_status`), dicionário completo, seção Q3/Q4 atualizada e 8 limitações mantidas.
+- **Pendente:** `/revisar-questao Q6 --auditar`
+- **Bloqueios:** nenhum
+- **Próximo passo:** `/revisar-questao Q6 --auditar` → `/encerrar-questao Q6 done` → `/iniciar-questao Q7`
+
+---
+
 ## Encerramento — Q5 como done (2026-04-17)
 
 - **Concluído:** Q5 encerrada com status `done`; todos os achados RQ-Q5-001..005 fechados; regressão em `plotar_grafico_corrigido_mom` corrigida; outputs restaurados; scripts auxiliares de sessão (`dump_q5.py` etc.) são resíduo não rastreado e não bloqueiam aceite.

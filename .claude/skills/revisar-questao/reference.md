@@ -4,6 +4,8 @@
 - `notebooks/case_techshop.ipynb`
 - `memory-bank/review-checklist.md`
 - `memory-bank/question-status.md`
+- `README.md`, quando a revisão incluir narrativa de entrega ou linguagem de documentação
+- `.md` em `docs/`, apenas quando esses arquivos estiverem explicitamente em escopo
 - Referências das questões em escopo
 
 ## Mapa Q -> referência
@@ -18,6 +20,9 @@
 ## Escopo
 - Validar cobertura, rastreabilidade e suficiência da questão alvo.
 - Ao revisar código, consultar `.claude/rules/code-style.md` para encoding, `PEP 8` pragmático e nomenclatura.
+- Ao revisar `README.md` ou `.md` narrativo em `docs/`, consultar `.claude/rules/analysis-writing.md` para clareza, jargão e explicação de termos técnicos inevitáveis.
+- Quando `README.md` ou `.md` em `docs/` estiver em escopo, validar se o texto está compreensível para leitor não técnico, com linguagem direta e sem operacionalismo desnecessário.
+- Não promover `.md` operacional ou interno em `docs/` a critério automático de aceite; revise esses arquivos apenas quando o usuário os colocar em escopo.
 - Em `--auditar`, registrar achados em `memory-bank/review-checklist.md` com IDs `RQ-{Q}-NNN`, sem editar notebook.
 - Em `--corrigir`, aplicar somente correções `objetiva` que continuem válidas; deixar `manual` como `blocked`.
 - Atualizar `memory-bank/question-status.md`.
