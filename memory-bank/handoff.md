@@ -1,3 +1,12 @@
+## Encerramento — Q5 como done (2026-04-17)
+
+- **Concluído:** Q5 encerrada com status `done`; todos os achados RQ-Q5-001..005 fechados; regressão em `plotar_grafico_corrigido_mom` corrigida; outputs restaurados; scripts auxiliares de sessão (`dump_q5.py` etc.) são resíduo não rastreado e não bloqueiam aceite.
+- **Pendente:** nenhum
+- **Bloqueios:** nenhum
+- **Próximo passo:** `/iniciar-questao Q6`
+
+---
+
 ## Correção RQ-Q5-003/004 — Q5 regressão corrigida (2026-04-17)
 
 - **Concluído:**
