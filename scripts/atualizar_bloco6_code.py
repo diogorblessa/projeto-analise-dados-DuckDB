@@ -169,6 +169,125 @@ def plotar_grafico_q5(
     )
 
 
+def formatar_mes_ano(periodo):
+    \"\"\"Converte Period('YYYY-MM') para rótulo abreviado (ex.: Jan/2024).\"\"\"
+    meses_pt = {
+        1: "Jan",
+        2: "Fev",
+        3: "Mar",
+        4: "Abr",
+        5: "Mai",
+        6: "Jun",
+        7: "Jul",
+        8: "Ago",
+        9: "Set",
+        10: "Out",
+        11: "Nov",
+        12: "Dez",
+    }
+    return f"{meses_pt[periodo.month]}/{periodo.year}"
+
+
+def plotar_grafico_corrigido_mom(ax, mom_pivot):
+    \"\"\"Renderiza o gráfico corrigido em linha com variação MoM por categoria.\"\"\"
+    paleta = plt.get_cmap("tab10")
+    meses_rotulos = [formatar_mes_ano(periodo) for periodo in mom_pivot.index]
+    eixo_x_base = list(range(len(meses_rotulos)))
+    quantidade_categorias = len(mom_pivot.columns)
+    if quantidade_categorias <= 1:
+        offsets = [0.0]
+    else:
+        abertura_total = 0.60
+        passo_offset = abertura_total / (quantidade_categorias - 1)
+        offsets = [(-abertura_total / 2) + (i * passo_offset) for i in range(quantidade_categorias)]
+
+    for indice, categoria in enumerate(mom_pivot.columns):
+        deslocamento_x = offsets[indice]
+        eixo_x_categoria = [x + deslocamento_x for x in eixo_x_base]
+        serie_categoria = mom_pivot[categoria].values
+        ax.plot(
+            eixo_x_categoria,
+            serie_categoria,
+            label=categoria,
+            color=paleta(indice),
+            linewidth=2.1,
+            marker="o",
+            markersize=4.6,
+            zorder=3,
+        )
+
+        deslocamento_rotulo_y = ((indice % 3) - 1) * 8
+        deslocamento_rotulo_x = ((indice % 2) * 4) - 2
+        for x_valor, y_valor in zip(eixo_x_categoria, serie_categoria):
+            if not (y_valor == y_valor):
+                continue
+            ax.annotate(
+                formatar_pct(y_valor),
+                xy=(x_valor, y_valor),
+                xytext=(deslocamento_rotulo_x, 10 + deslocamento_rotulo_y),
+                textcoords="offset points",
+                ha="center",
+                va="bottom",
+                fontsize=7,
+                color=paleta(indice),
+                bbox={
+                    "boxstyle": "round,pad=0.2",
+                    "fc": "white",
+                    "ec": "none",
+                    "alpha": 0.78,
+                },
+            )
+
+    valores_validos = mom_pivot.stack().dropna()
+    limite_inferior = min(0, valores_validos.min())
+    limite_superior = max(0, valores_validos.max())
+    amplitude = limite_superior - limite_inferior
+    margem = max(12, amplitude * 0.12)
+
+    ax.set_title(
+        "Q5 — Gráfico corrigido\\n"
+        "Variação de receita mensal por categoria — 2024\\n"
+        "(MoM, com filtro de status válido)",
+        fontsize=13,
+        fontweight="bold",
+        pad=14,
+    )
+    ax.set_ylabel("Variação da receita mensal MoM (%)")
+    ax.set_xlabel("Mês")
+    ax.set_xticks(eixo_x_base)
+    ax.set_xticklabels(meses_rotulos, rotation=23, ha="right")
+    ax.set_xlim(min(eixo_x_base) - 0.6, max(eixo_x_base) + 0.6)
+    ax.set_ylim(limite_inferior - margem, limite_superior + margem)
+    ax.axhline(0, color="#495057", linewidth=0.8, zorder=2)
+    ax.grid(axis="y", color="#d9dee7", linewidth=0.9, alpha=0.9, zorder=1)
+    ax.set_facecolor("#fbfcfe")
+    ax.tick_params(axis="x", labelsize=9)
+    ax.tick_params(axis="y", labelsize=9)
+    for spine in ["top", "right"]:
+        ax.spines[spine].set_visible(False)
+    ax.spines["left"].set_color("#d9dee7")
+    ax.spines["bottom"].set_color("#d9dee7")
+    ax.legend(
+        loc="upper left",
+        bbox_to_anchor=(1.01, 1.0),
+        frameon=False,
+        fontsize=8,
+        title="Categoria",
+        title_fontsize=9,
+    )
+    ax.text(
+        0.0,
+        -0.17,
+        "Fonte: data/interim/ecommerce_tratado.csv | "
+        "MoM calculado sobre receita mensal filtrada por status válido",
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=8,
+        color="#7a7f87",
+    )
+
+
 # ---------------------------------------------------------------
 # Carga das bases
 # ---------------------------------------------------------------
@@ -258,6 +377,13 @@ resultado_corrigido, corrigido_df = calcular_variacao_mensal_ordenada(
     receita_mes_corrigida,
     coluna_saida="corrigido_pct",
 )
+mom_corrigido = receita_mes_corrigida.sort_values(["categoria", "mes"]).copy()
+mom_corrigido["mom_pct"] = mom_corrigido.groupby("categoria")["receita"].pct_change() * 100
+mom_corrigido_pivot = (
+    mom_corrigido.pivot(index="mes", columns="categoria", values="mom_pct")
+    .reindex(columns=ORDEM_CATEGORIAS)
+    .sort_index()
+)
 
 cobertura_corrigida = (
     receita_mes_corrigida.groupby("categoria")["mes"]
@@ -306,7 +432,7 @@ print(comparativo_q5.to_string(index=False))
 # ---------------------------------------------------------------
 # Gráficos padronizados: original histórico vs. corrigido
 # ---------------------------------------------------------------
-# Escala Y compartilhada é pré-requisito para comparação visual honesta entre artefato e correção.
+# Mantém a escala do gráfico histórico ancorada no recorte jan→dez para preservar o comparativo com o artefato.
 valores_y = pd.concat(
     [
         comparativo_q5["artefato_historico_pct"],
@@ -322,8 +448,8 @@ margem = max(12, amplitude * 0.12)
 y_limites = (limite_inferior - margem, limite_superior + margem)
 
 print(
-    "\\nOs dois gráficos abaixo usam a mesma escala no eixo Y para permitir "
-    "comparação visual direta entre o artefato histórico e a versão corrigida."
+    "\\nOs dois gráficos abaixo complementam a auditoria: o primeiro reproduz "
+    "o artefato histórico e o segundo mostra a variação mensal MoM da base corrigida."
 )
 
 with plt.style.context("seaborn-v0_8-whitegrid"):
@@ -344,35 +470,11 @@ with plt.style.context("seaborn-v0_8-whitegrid"):
     plt.show()
 
 with plt.style.context("seaborn-v0_8-whitegrid"):
-    fig, ax = plt.subplots(figsize=(10.5, 5.8))
-    categorias_positivas = corrigido_df[corrigido_df["corrigido_pct"] > 0]["categoria"].tolist()
-    plotar_grafico_q5(
-        ax=ax,
-        dados_plot=corrigido_df,
-        coluna_percentual="corrigido_pct",
-        identificacao="Q5 — Gráfico corrigido",
-        subtitulo="(jan/2024 → dez/2024, com filtro de status válido)",
-        eixo_y="Variação da receita mensal (jan/2024 → dez/2024) (%)",
-        legenda="Categorias com crescimento positivo na leitura corrigida",
-        rodape="Fonte: data/interim/ecommerce_tratado.csv | Status válidos: entregue + em_transito",
-        categorias_destacadas=categorias_positivas,
-        y_limites=y_limites,
-    )
+    fig, ax = plt.subplots(figsize=(11.6, 6.2))
+    plotar_grafico_corrigido_mom(ax=ax, mom_pivot=mom_corrigido_pivot)
     plt.tight_layout()
     plt.show()
-
-
-# ---------------------------------------------------------------
-# Apoio à Fase 2: evolução mensal da leitura corrigida
-# ---------------------------------------------------------------
-evolucao_corrigida = (
-    resultado_corrigido.pivot(index="mes", columns="categoria", values="corrigido_pct")
-    .reindex(columns=ORDEM_CATEGORIAS)
-    .round(1)
-    .sort_index()
-)
-print("\\nEvolução mensal da leitura corrigida (jan/2024 → dez/2024):")
-print(evolucao_corrigida.to_string())\
+\
 """
 
 

@@ -1,3 +1,20 @@
+## Correção pontual — Q5 gráfico corrigido (2026-04-17)
+
+- **Concluído:**
+  - Edição 1 aplicada em `q5_debug_code` (célula 25): função `plotar_grafico_corrigido_mom` passou a usar 6 deslocamentos Y únicos por categoria (`[-20, -12, -4, 4, 12, 20]`) no lugar de `(indice % 3) * 8`; `xytext` recalibrado sem o offset literal `+10`. Sobreposição estrutural dos rótulos do gráfico MoM resolvida.
+  - Edição 2 aplicada em `q5_debug_code`: tabela de apoio impressa abaixo do gráfico passou a refletir MoM (reusa `mom_corrigido_pivot`), consistente com a métrica do próprio gráfico. Variável renomeada `evolucao_corrigida` → `evolucao_mom`; título do print atualizado. `corrigido_pct` e `calcular_variacao_mensal_ordenada` preservados — seguem usados em `comparativo_q5`.
+  - Edição 3 aplicada em `q5_debug_analise` (célula 26): ressalva sobre volatilidade reescrita citando valores MoM reais — Impressoras `+199,4% (fev) → -75,4% (jun) → +188,3% (ago)`, Câmeras `+254,9% (set) ↔ -65,7% (nov)`. Os valores acumulados antigos (`+507,7%`, `+319,2%`, `+74,7%`, `-69,0%`) foram removidos.
+  - Revisão prévia pelo `@code-reviewer`: GO condicional aprovado; atenção a UTF-8 na edição 3 verificada (sem mojibake no diff).
+  - Notebook reexecutado via `nbconvert --execute`; 0 erros; 2 figuras geradas em cell 25; tabela `evolucao_mom` exibe valores idênticos ao gráfico (sanity check: Armazenamento dez/2024 = `+633,5%` nos dois; Monitores dez/2024 = `+224,5%`; Impressoras mai/2024 = `+114,4%`).
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** nenhum
+
+- **Próximo passo:** `/iniciar-questao Q6`
+
+---
+
 ## Encerramento — Q5 concluída (2026-04-17)
 
 - **Concluído:**
