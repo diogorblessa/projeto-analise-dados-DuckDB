@@ -216,7 +216,8 @@ def plotar_grafico_corrigido_mom(ax, mom_pivot):
             zorder=3,
         )
 
-        deslocamento_rotulo_y = ((indice % 3) - 1) * 8
+        OFFSETS_Y = [-20, -12, -4, 4, 12, 20]
+        deslocamento_rotulo_y = OFFSETS_Y[indice % len(OFFSETS_Y)]
         deslocamento_rotulo_x = ((indice % 2) * 4) - 2
         for x_valor, y_valor in zip(eixo_x_categoria, serie_categoria):
             if not (y_valor == y_valor):
@@ -224,7 +225,7 @@ def plotar_grafico_corrigido_mom(ax, mom_pivot):
             ax.annotate(
                 formatar_pct(y_valor),
                 xy=(x_valor, y_valor),
-                xytext=(deslocamento_rotulo_x, 10 + deslocamento_rotulo_y),
+                xytext=(deslocamento_rotulo_x, deslocamento_rotulo_y),
                 textcoords="offset points",
                 ha="center",
                 va="bottom",

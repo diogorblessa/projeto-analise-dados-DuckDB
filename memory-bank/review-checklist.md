@@ -71,6 +71,8 @@ Nenhum achado aberto.
 | RQ-Q4-004 | /revisar-questao Q4 --auditar | applied | Travessões longos removidos do bloco 5 da Q4 e das linhas novas desta rodada no memory-bank; números e achados preservados. | 2026-04-16 |
 | RQ-Q5-001 | /revisar-questao Q5 --corrigir | applied | `q5_debug_code` refeito para reproduzir o artefato histórico, padronizar o gráfico corrigido, remover a figura anual e explicitar a divergência entre artefato histórico e script versionado; `scripts/inserir_bloco6.py` alinhado à Fase 1 sem `q5_debug_analise`. | 2026-04-16 |
 | RQ-Q5-002 | /revisar-questao Q5 --corrigir | applied | Última linha de `d24bda53` substituída: "ficará para a Fase 2 do workflow" → "está na próxima célula"; célula 24 agora consistente com a presença de célula 26. | 2026-04-17 |
+| RQ-Q5-003 | /revisar-questao Q5 --corrigir | applied | `q5_debug_code` tinha `execution_count=null` e 0 outputs (limpos por re-execução de `atualizar_bloco6_code.py` com source regressivo); notebook re-executado via `nbconvert --execute` após correção RQ-Q5-004; outputs restaurados: 1 stream + 2 figuras (execution_count=9). | 2026-04-17 |
+| RQ-Q5-004 | /revisar-questao Q5 --corrigir | applied | `plotar_grafico_corrigido_mom` usava `((indice % 3) - 1) * 8` com `10 + deslocamento_rotulo_y` no xytext (3 posições Y repetidas, sobreposição potencial); restaurado para `OFFSETS_Y = [-20, -12, -4, 4, 12, 20]` com `xytext=(x, deslocamento_rotulo_y)` (6 posições únicas); aplicado em `q5_debug_code` e `scripts/atualizar_bloco6_code.py`. | 2026-04-17 |
 
 ## Errata — Reconciliação CODE vs MD (2026-04-15)
 

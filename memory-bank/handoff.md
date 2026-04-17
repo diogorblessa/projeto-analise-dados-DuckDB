@@ -1,3 +1,20 @@
+## Correção RQ-Q5-003/004 — Q5 regressão corrigida (2026-04-17)
+
+- **Concluído:**
+  - Auditoria `/revisar-questao Q5 --auditar` revelou que `atualizar_bloco6_code.py` foi modificado com `SOURCE_CODE` regressivo e re-executado, sobrescrevendo `q5_debug_code` e limpando outputs.
+  - RQ-Q5-004 aplicado: `plotar_grafico_corrigido_mom` restaurada para `OFFSETS_Y = [-20, -12, -4, 4, 12, 20]` com `xytext=(deslocamento_rotulo_x, deslocamento_rotulo_y)` (sem `+10`); aplicado em `q5_debug_code` e `scripts/atualizar_bloco6_code.py`.
+  - RQ-Q5-003 aplicado: notebook re-executado via `nbconvert --execute --inplace`; 0 erros; outputs restaurados em `q5_debug_code` (execution_count=9, 1 stream + 2 figuras).
+  - `review-checklist.md`: RQ-Q5-003 e RQ-Q5-004 em Applied/Closed; Open Findings = 0.
+  - `question-status.md`: Q5 permanece `done`.
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** nenhum
+
+- **Próximo passo:** `/iniciar-questao Q6`
+
+---
+
 ## Correção pontual — Q5 gráfico corrigido (2026-04-17)
 
 - **Concluído:**

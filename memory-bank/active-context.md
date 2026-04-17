@@ -5,11 +5,11 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 > Autoridade: `docs/PRD.md` define escopo, padrões e aceite. `docs/instrucoes_desafio.md` é contexto histórico. `memory-bank/` registra toda a continuidade operacional persistente. Só um registro aceito em `decisions.md` com `override_of` e `aprovacao` explícitos pode ajustar o item correspondente do PRD. Status vivo fora de `memory-bank/` deve ser tratado como descritivo ou potencialmente desatualizado.
 
 ## Foco atual
-- Q5 - Debug - `done` (correção pontual em 2026-04-17: gráfico MoM com rótulos espaçados e tabela de apoio convertida para MoM)
+- Q5 - Debug - `done` (RQ-Q5-003/004 aplicados 2026-04-17: regressão em `plotar_grafico_corrigido_mom` corrigida; outputs restaurados)
 - Data: 2026-04-17
 
 ## Skill ou fluxo ativo
-- Nenhum; correção pontual Q5 aplicada via `@code-reviewer` + edições dirigidas
+- Nenhum; /revisar-questao Q5 --corrigir concluída
 
 ## Decisões aguardando validação
 - Nenhuma.
