@@ -1,7 +1,7 @@
 ---
 name: revisao-final
 description: Auditoria final global do notebook completo
-argument-hint: [--auditar|--corrigir]
+argument-hint: all [--auditar|--corrigir]
 disable-model-invocation: true
 ---
 
