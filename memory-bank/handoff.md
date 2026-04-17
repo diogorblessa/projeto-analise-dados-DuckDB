@@ -1,3 +1,31 @@
+## Encerramento parcial - Q5 Fase 1 sincronizada (2026-04-16)
+
+- **Concluído:**
+  - `scripts/atualizar_bloco6_code.py` reescrito como fonte canônica da célula `q5_debug_code`
+  - `scripts/inserir_bloco6.py` ajustado para a Fase 1: atualiza `d24bda53`, garante `q5_debug_code` e não cria `q5_debug_analise`
+  - Bloco 6 de Q5 normalizado no notebook como `MD explicação -> CODE`, sem célula `[MD análise]`
+  - `q5_debug_code` agora gera exatamente 2 gráficos principais:
+    - reprodução do gráfico histórico apresentado à diretoria, com rótulos numéricos nas barras, legenda, rodapé e identificação explícita
+    - gráfico corrigido padronizado, com eixo `jan/2024 -> dez/2024`
+  - Figura anual complementar removida do bloco 6
+  - Output textual de Q5 passou a mostrar:
+    - evidência do Erro 1 (status inválidos inflando receita)
+    - evidência do Erro 2 (`YoY` impossível + base dependente da ordem)
+    - tabela comparando artefato histórico, saída literal de `scripts/analise_crescimento.py` e leitura corrigida
+  - Achado adicional formalizado: o gráfico histórico da diretoria não é totalmente reproduzível a partir do script versionado
+  - Outputs de `q5_debug_code` sincronizados diretamente no notebook por execução programática da célula; `execution_count = 1`, `4` outputs gravados (`2` streams + `2` figuras)
+  - `question-status.md`, `active-context.md` e `review-checklist.md` sincronizados para `Q5 = review`
+
+- **Pendente:**
+  - Fase 2 de Q5 via `/analisar-erro` para escrever a `[MD análise]`
+
+- **Bloqueios:**
+  - `nbconvert --execute` permanece bloqueado neste ambiente Windows por `PermissionError [WinError 5]` ao abrir o kernel do Jupyter; workaround usado apenas para sincronizar a célula de Q5
+
+- **Próximo passo:** Claude Code executar a Fase 2 de Q5 (`/analisar-erro`) e, depois disso, retomar Q6
+
+---
+
 ## Encerramento formal - Q4 auditada e sincronizada (2026-04-16)
 
 - **Concluído:**

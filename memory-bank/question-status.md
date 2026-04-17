@@ -8,7 +8,7 @@ Status de cada questão do PRD.
 | Q2 - Tratamento | done | 2026-04-15 | concluída |
 | Q3 - SQL | done | 2026-04-16 | concluída |
 | Q4 - Negócio | done | 2026-04-16 | concluída: auditoria final sincronizada com checklist e decisão Q4-002 aceita |
-| Q5 - Debug | not_started | - | - |
+| Q5 - Debug | review | 2026-04-16 | Fase 1 concluída: bloco 6 sincronizado; Fase 2 ([MD análise]) pendente |
 | Q6 - Modelagem | not_started | - | - |
 | Q7 - Insight | not_started | - | - |
 

@@ -10,6 +10,7 @@ CLAUDE.local.md
 .idea/
 *.code-workspace
 .editorconfig
+uv.lock
 
 # Guia operacional pessoal
 docs/guia_de_execucao.md
