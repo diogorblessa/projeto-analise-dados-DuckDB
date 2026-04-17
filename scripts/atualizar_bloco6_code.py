@@ -31,9 +31,7 @@ SOURCE_CODE = """\
 # A [MD análise] fica reservada para a Fase 2.
 # =============================================================
 
-from matplotlib.patches import Patch
-
-
+# Fixa a ordem e os valores do artefato apresentado à diretoria, pontos de referência imutáveis da auditoria.
 ORDEM_CATEGORIAS = [
     "Monitores",
     "Armazenamento",
@@ -54,14 +52,17 @@ ARTEFATO_HISTORICO_PCT = {
 
 
 def formatar_brl(valor):
+    \"\"\"Padroniza a exibição monetária da auditoria em reais com separadores PT-BR.\"\"\"
     return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
 def formatar_pct(valor):
+    \"\"\"Padroniza a exibição percentual usada nos rótulos dos gráficos de Q5.\"\"\"
     return f"{valor:.1f}%"
 
 
 def reordenar_por_categoria(df, coluna_valor):
+    \"\"\"Alinha o recorte à `ORDEM_CATEGORIAS` para comparar artefato histórico, script e versão corrigida lado a lado.\"\"\"
     return (
         df[["categoria", coluna_valor]]
         .drop_duplicates(subset=["categoria"])
@@ -72,6 +73,7 @@ def reordenar_por_categoria(df, coluna_valor):
 
 
 def calcular_variacao_mensal_ordenada(df_cat_mes, coluna_saida):
+    \"\"\"Ancora o crescimento em jan/2024 ordenando cada categoria por mês antes do `iloc[0]`, neutralizando o Erro 2.\"\"\"
     partes = []
     for _, grupo in df_cat_mes.groupby("categoria"):
         grupo = grupo.sort_values("mes").copy()
@@ -85,6 +87,7 @@ def calcular_variacao_mensal_ordenada(df_cat_mes, coluna_saida):
 
 
 def reproduzir_script_literal(df_bruto):
+    \"\"\"Executa o pipeline do `analise_crescimento.py` sem correções, expondo o efeito do `iloc[0]` sobre a base não ordenada.\"\"\"
     receita_mes = df_bruto.groupby(["categoria", "mes"])["receita"].sum().reset_index()
     partes = []
     for _, grupo in receita_mes.groupby("categoria"):
@@ -110,6 +113,7 @@ def plotar_grafico_q5(
     categorias_destacadas,
     y_limites,
 ):
+    \"\"\"Renderiza o gráfico padronizado de Q5 com escala Y compartilhada entre artefato histórico e versão corrigida.\"\"\"
     azul = "#2f67d8"
     cinza = "#6e7f99"
     cores = [
@@ -179,6 +183,7 @@ df_bruto_original["receita"] = (
     * (1 - df_bruto_original["desconto_%"].fillna(0) / 100)
 )
 
+# Base tratada espelha o insumo real do script legado; df_valido aplica o filtro de status que o Erro 1 ignorou.
 df_tratado = pd.read_csv(INTERIM_DIR / "ecommerce_tratado.csv")
 df_tratado["data_pedido"] = pd.to_datetime(df_tratado["data_pedido"])
 df_tratado["mes"] = df_tratado["data_pedido"].dt.to_period("M")
@@ -210,6 +215,7 @@ print("YoY real exigiria o mesmo período de 2023, que não existe nesta base.")
 receita_mes_tratado = (
     df_tratado.groupby(["categoria", "mes"])["receita"].sum().reset_index()
 )
+# Embaralha a base para expor a dependência de ordem do iloc[0]; random_state fixo mantém a evidência reproduzível.
 receita_mes_desordenado = receita_mes_tratado.sample(frac=1, random_state=7).reset_index(drop=True)
 
 print("\\nSensibilidade do `iloc[0]` quando a ordem dos dados muda:")
@@ -262,6 +268,7 @@ cobertura_corrigida = (
     .reset_index()
 )
 
+# Consolida as três leituras na mesma granularidade de categoria para quantificar as divergências em pontos percentuais.
 comparativo_q5 = (
     historico_df.merge(script_literal_df, on="categoria", how="left")
     .merge(corrigido_df, on="categoria", how="left")
@@ -299,6 +306,7 @@ print(comparativo_q5.to_string(index=False))
 # ---------------------------------------------------------------
 # Gráficos padronizados: original histórico vs. corrigido
 # ---------------------------------------------------------------
+# Escala Y compartilhada é pré-requisito para comparação visual honesta entre artefato e correção.
 valores_y = pd.concat(
     [
         comparativo_q5["artefato_historico_pct"],
