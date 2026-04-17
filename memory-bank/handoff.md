@@ -1,3 +1,38 @@
+## Encerramento — Q5 concluída (2026-04-17)
+
+- **Concluído:**
+  - RQ-Q5-002 aplicado: última linha de `d24bda53` substituída de "ficará para a Fase 2 do workflow" para "está na próxima célula"
+  - `review-checklist.md`: Open Findings = 0; RQ-Q5-002 em Applied/Closed; item Fase 1 de Q5 atualizado
+  - Q5 totalmente encerrada — Fase 1, Fase 2 e correção RQ-Q5-002 aplicadas
+
+- **Pendente:** nenhum
+
+- **Bloqueios:** nenhum em Q5
+
+- **Próximo passo:** `/iniciar-questao Q6`
+
+---
+
+## Encerramento — Q5 auditada (2026-04-17)
+
+- **Concluído:**
+  - `/revisar-questao Q5 --auditar` executada; notebook confirma Fase 1 (célula 24 + 25) e Fase 2 (célula 26) presentes
+  - Cross-check de todos os números da célula 26 contra outputs da célula 25: sem divergências
+  - RQ-Q5-002 registrado: célula 24 anuncia Fase 2 como futura ("ficará para a Fase 2 do workflow") mas célula 26 já existe; fix_class objetiva
+  - Três novos itens PASS adicionados ao Final Checklist Cache: Fase 2 estrutura, afirmações rastreáveis, código PEP8
+  - Item global `Q5-Q7 — implementadas` (FAIL) atualizado: Q5 completa, blocker remanescente apenas para Q6/Q7
+  - `question-status.md`: Q5 → `done`
+
+- **Pendente:**
+  - RQ-Q5-002: remover/atualizar frase stale na célula 24 (para `/revisar-questao Q5 --corrigir`)
+
+- **Bloqueios:**
+  - Nenhum em Q5
+
+- **Próximo passo:** `/revisar-questao Q5 --corrigir` para fechar RQ-Q5-002; depois `/iniciar-questao Q6`
+
+---
+
 ## Encerramento parcial - Q5 Fase 1 sincronizada (2026-04-16)
 
 - **Concluído:**

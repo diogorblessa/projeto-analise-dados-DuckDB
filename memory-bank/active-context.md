@@ -5,17 +5,17 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 > Autoridade: `docs/PRD.md` define escopo, padrões e aceite. `docs/instrucoes_desafio.md` é contexto histórico. `memory-bank/` registra toda a continuidade operacional persistente. Só um registro aceito em `decisions.md` com `override_of` e `aprovacao` explícitos pode ajustar o item correspondente do PRD. Status vivo fora de `memory-bank/` deve ser tratado como descritivo ou potencialmente desatualizado.
 
 ## Foco atual
-- Q5 - Debug - `review`
-- Data: 2026-04-16
+- Q5 - Debug - `done` (corrigida em 2026-04-17)
+- Data: 2026-04-17
 
 ## Skill ou fluxo ativo
-- Skill ativo: `/revisar-questao Q5`
+- Nenhum; `/revisar-questao Q5 --corrigir` encerrado
 
 ## Decisões aguardando validação
 - Nenhuma.
 
 ## Próximo marco
-- Executar a Fase 2 de Q5 com `/analisar-erro` para preencher a `[MD análise]`; depois retomar Q6
+- Iniciar Q6 via `/iniciar-questao Q6`
 
 ## Ponteiros
 - Status por questão: [question-status.md](question-status.md)

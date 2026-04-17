@@ -5,7 +5,7 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 ## Header
 - `schema_version`: 1
 - `notebook`: `notebooks/case_techshop.ipynb`
-- `last_updated`: 2026-04-16
+- `last_updated`: 2026-04-17
 - `last_writer`: /revisar-questao Q5 --corrigir
 
 ## Open Findings
@@ -41,11 +41,14 @@ Nenhum achado aberto.
 | Q4 - limitações declaradas e decisions.md atualizado | PASS | `q4_sul_fase1_analise`: 6 limitações explícitas (incl. disclosure KPI 1/4 status); `memory-bank/decisions.md` Q4-002 como decisão aceita | RQ-Q4-002 aplicado e evidência sincronizada | /revisar-questao Q4 --auditar | 2026-04-16 |
 | Q4 - afirmações rastreáveis a output visível (célula imediata) | PASS | H1-H3, interpretação de mix e volatilidade mensal: todos os valores batem com tabelas/prints de `q4_sul_fase1` | - | /revisar-questao Q4 --auditar | 2026-04-16 |
 | Q4 - código PEP8, nomenclatura descritiva | PASS | `kpis_regiao`, `kpis_por_uf_sul`, `taxas_cancelamento_regiao`, `avaliacao_media_regiao`, `mix_categoria_sul_vs_resto`, `tendencia_mensal_sul_vs_resto` | RQ-Q4-001 aplicado: `SUL` constant morta removida | /revisar-questao Q4 --corrigir | 2026-04-16 |
-| Q5 - Fase 1 alinhada ao workflow (`MD explicação -> CODE`) | PASS | `d24bda53 -> q5_debug_code`; `q5_debug_analise` removida de propósito | Fase 2 fica reservada ao Claude Code via `/analisar-erro` | /revisar-questao Q5 --corrigir | 2026-04-16 |
+| Q5 - Fase 1 alinhada ao workflow (`MD explicação -> CODE`) | PASS | `d24bda53 -> q5_debug_code` | RQ-Q5-002 aplicado: frase stale removida; célula 24 agora aponta para a próxima célula | /revisar-questao Q5 --corrigir | 2026-04-17 |
 | Q5 - gráfico original histórico reproduzido e identificado | PASS | `q5_debug_code` output_2 | Duas figuras principais apenas; gráfico histórico com rótulos numéricos, legenda e rodapé compatíveis com o artefato | /revisar-questao Q5 --corrigir | 2026-04-16 |
 | Q5 - gráfico corrigido padronizado com eixo `jan/2024 -> dez/2024` | PASS | `q5_debug_code` output_3 | Mesmo template visual-base do histórico; sem figura anual complementar | /revisar-questao Q5 --corrigir | 2026-04-16 |
 | Q5 - comparação artefato histórico vs script versionado vs corrigido | PASS | `q5_debug_code` output_1 | Divergência entre imagem histórica e `scripts/analise_crescimento.py` explicitada em tabela comparativa | /revisar-questao Q5 --corrigir | 2026-04-16 |
-| Q5-Q7 - implementadas | FAIL | Q5 em `review` após Fase 1; Q6 e Q7 seguem placeholders (`f1961177`, `76f81a84`) | Blocker global remanescente; não invalida Q1-Q4 | /revisar-questao Q5 --corrigir | 2026-04-16 |
+| Q5 — Fase 2: [MD análise] com erros numerados, impacto e correção | PASS | célula 26 (`q5_debug_analise`) | "Correção recomendada" lista Erro 1, 2 e 3 (label YoY); impacto em "O que isso significa para o negócio"; recursos de correção explicitados | /revisar-questao Q5 --auditar | 2026-04-17 |
+| Q5 — afirmações rastreáveis a output visível | PASS | célula 26 cruzada com outputs de célula 25 | R$ 175.599,53 / R$ 731.085,80 / 24,0% / 6 de 6 categorias / divergências pp: todas batem com output_1 de `q5_debug_code` | /revisar-questao Q5 --auditar | 2026-04-17 |
+| Q5 — código PEP8, nomenclatura descritiva | PASS | `formatar_brl`, `calcular_variacao_mensal_ordenada`, `reproduzir_script_literal`, `df_bruto_original`, `df_valido`, `status_validos` | sem `n_*`/`mask_*`; constantes em UPPER_CASE; snake_case descritivo | /revisar-questao Q5 --auditar | 2026-04-17 |
+| Q5-Q7 - implementadas | FAIL | Q6 e Q7 seguem placeholders (`f1961177`, `76f81a84`); Q5 Fase 1 e Fase 2 completas | Blocker remanescente apenas para Q6 e Q7; não invalida Q1-Q5 | /revisar-questao Q5 --auditar | 2026-04-17 |
 
 ## Applied/Closed
 | id | source | status_final | resolucao | updated_at |
@@ -67,6 +70,7 @@ Nenhum achado aberto.
 | RQ-Q4-003 | /revisar-questao Q4 --auditar | applied | Checklist Q4 sincronizado com a recomendação vigente `prosseguir com ressalvas` e com `Q4-002` como decisão aceita. | 2026-04-16 |
 | RQ-Q4-004 | /revisar-questao Q4 --auditar | applied | Travessões longos removidos do bloco 5 da Q4 e das linhas novas desta rodada no memory-bank; números e achados preservados. | 2026-04-16 |
 | RQ-Q5-001 | /revisar-questao Q5 --corrigir | applied | `q5_debug_code` refeito para reproduzir o artefato histórico, padronizar o gráfico corrigido, remover a figura anual e explicitar a divergência entre artefato histórico e script versionado; `scripts/inserir_bloco6.py` alinhado à Fase 1 sem `q5_debug_analise`. | 2026-04-16 |
+| RQ-Q5-002 | /revisar-questao Q5 --corrigir | applied | Última linha de `d24bda53` substituída: "ficará para a Fase 2 do workflow" → "está na próxima célula"; célula 24 agora consistente com a presença de célula 26. | 2026-04-17 |
 
 ## Errata — Reconciliação CODE vs MD (2026-04-15)
 
