@@ -6,12 +6,12 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 - `schema_version`: 1
 - `notebook`: `notebooks/case_techshop.ipynb`
 - `last_updated`: 2026-04-17
-- `last_writer`: /revisar-questao Q6 --corrigir
+- `last_writer`: /revisao-final all --corrigir
 
 ## Open Findings
 | id | questao | achado | severidade | acao | source | updated_at |
 |---|---|---|---|---|---|---|
-Nenhum achado aberto.
+| RF-004 | global | Restart & Run All não revalidado após Q7 e reversão de Q6. `execution_count`: Q1=41, Q2=42, Q3=43-46, Q4=47, Q5=48, Q7=51 (pulo 48→51 indica re-execução isolada de Q7). Critério PRD §6 em risco | M | Manual: rodar `Restart & Run All` no Jupyter ou `uv run jupyter nbconvert --execute --inplace notebooks/case_techshop.ipynb`; validar que `execution_count` fica contíguo 1..N | /revisao-final all --auditar | 2026-04-17 |
 
 ## Final Checklist Cache
 | requisito | status | evidencia | observacao | source | updated_at |
@@ -50,10 +50,14 @@ Nenhum achado aberto.
 | Q5 — Fase 2: [MD análise] com erros numerados, impacto e correção | PASS | célula 26 (`q5_debug_analise`) | Seção "Recomendação sobre confiabilidade" fecha análise; lista numerada de erros em d24bda53 (intro); impacto em "O que isso significa para o negócio"; correção descrita narrativamente — RQ-Q5-005: observação anterior citava "Correção recomendada" que não existe | /revisar-questao Q5 --auditar | 2026-04-17 |
 | Q5 — afirmações rastreáveis a output visível | PASS | célula 26 cruzada com outputs de célula 25 | R$ 175.599,53 / R$ 731.085,80 / 24,0% / 6 de 6 categorias / divergências pp: todas batem com output_1 de `q5_debug_code` | /revisar-questao Q5 --auditar | 2026-04-17 |
 | Q5 — código PEP8, nomenclatura descritiva | PASS | `formatar_brl`, `calcular_variacao_mensal_ordenada`, `reproduzir_script_literal`, `df_bruto_original`, `df_valido`, `status_validos` | sem `n_*`/`mask_*`; constantes em UPPER_CASE; snake_case descritivo | /revisar-questao Q5 --auditar | 2026-04-17 |
-| Q6 — diagrama legível com granularidade declarada | PASS | SVG `DER_MODELO_DIMENSIONAL_BLOCO_7.svg` referenciado na célula; arquivo existe em `artifacts/diagrams/`; grão "uma linha por item de pedido" explícito | F-Q6-02: imagem dentro de blockquote; verificar renderização | /revisar-questao Q6 --auditar | 2026-04-17 |
-| Q6 — tabelas criadas com justificativa de escolha | PASS | 6 dimensões + 1 fato com dicionário completo; escolha floco de neve leve justificada por hierarquia `produto→categoria` e custo de 1 JOIN | F-Q6-01: "print de referência" inauditável na justificativa — baixa severidade | /revisar-questao Q6 --auditar | 2026-04-17 |
-| Q6 — estrutura markdown-only (sem CODE obrigatório) | PASS | Bloco 7 com objetivo, grão, diagrama, dicionário, suporte Q3/Q4 e 8 limitações documentadas | - | /revisar-questao Q6 --auditar | 2026-04-17 |
-| Q6-Q7 - implementadas | FAIL | Q7 segue placeholder (`76f81a84`); Q6 redesenhado e em review com achados F-Q6-01/02 | Único blocker remanescente é Q7 | /revisar-questao Q6 --auditar | 2026-04-17 |
+| Q6 — diagrama legível com granularidade declarada | PASS | SVG `DER_MODELO_DIMENSIONAL_BLOCO_7.svg` referenciado na célula; arquivo existe em `artifacts/diagrams/`; grão `uma linha por pedido` explícito; SVG e MD canônico alinhados com a versão atual (estrela simples) | RF-005 aplicado: descrição atualizada para estado atual | /revisao-final all --corrigir | 2026-04-17 |
+| Q6 — tabelas criadas com justificativa de escolha | PASS | 5 dimensões + 1 fato (`dim_tempo`, `dim_cliente`, `dim_localidade`, `dim_produto`, `dim_status`); escolha `estrela simples` justificada porque dataset raw é flat e `categoria` cabe dentro de `dim_produto` sem snowflake; medidas e tipos declarados | RF-005 aplicado: descrição atualizada de floco de neve leve para estrela simples | /revisao-final all --corrigir | 2026-04-17 |
+| Q6 — estrutura markdown-only (sem CODE obrigatório) | PASS | Bloco 7 com escolha de modelagem, grão, chaves substitutas, diagrama, tabelas propostas e tipos principais | RF-005 aplicado: descrição atualizada para refletir seções atuais | /revisao-final all --corrigir | 2026-04-17 |
+| Q7 - estrutura [MD explicação] → [CODE] → [MD análise] | PASS | `76f81a84` → `q7_insight_code` → `q7_md_analise` | 3 células presentes com conteúdo completo; hipótese, método, filtros e limitações declarados na MD explicação; nota executiva com achado principal, evidências, ressalvas e próximos passos | /revisao-final all --auditar | 2026-04-17 |
+| Q7 - hipótese, método e filtros declarados | PASS | `76f81a84`: hipótese "desconto não se paga em volume"; método (5 faixas → Spearman); filtros `status = 'entregue'`; limitações (sem custo/margem, sem ajuste de mix) | RF-007 aberto: MD explicação cita 5 faixas mas output exibe 4 (grupo `>20%` vazio por teto DI-004) | /revisao-final all --auditar | 2026-04-17 |
+| Q7 - afirmações rastreáveis a output visível | PASS | `q7_md_analise` cruzado com output de `q7_insight_code`: ρ=+0,009, R$ 697,86, R$ 798,41, R$ 796,18, 335 pedidos, R$ 233.784,50, 121 pedidos, R$ 94.761,34 — todos batem com `base` e agregado | Hipótese inicial (desconto comprime receita) foi declarada como refutada de forma explícita na nota executiva | /revisao-final all --auditar | 2026-04-17 |
+| Q7 - gráfico salvo em artifacts/ | PASS | `artifacts/q7_desconto_receita.png` presente (91 KB); scatter + OLS + anotação Spearman; output_2 grava caminho relativo | Caminho `../artifacts/q7_desconto_receita.png` consistente com relativo a `notebooks/` | /revisao-final all --auditar | 2026-04-17 |
+| Q7 - código PEP8, nomenclatura descritiva | PASS | `df_entregues`, `df_q7`, `periodo`, `rho`, `p_valor`, `slope`, `intercept`, `x_line` | imports centralizados (Bloco 1); uso de `scipy.stats`; função anônima para formatador BRL; sem `n_*`/`mask_*` | /revisao-final all --auditar | 2026-04-17 |
 
 ## Applied/Closed
 | id | source | status_final | resolucao | updated_at |
@@ -83,6 +87,9 @@ Nenhum achado aberto.
 | RQ-Q6-F01 | /revisar-questao Q6 --corrigir | applied | Frase "aproximar a composição visual do print de referência e" removida do parágrafo de justificativa do floco de neve em `f1961177`. Layout section agora lê "melhorar a legibilidade do diagrama e manter a separação entre produto e agrupamento analítico". | 2026-04-17 |
 | RQ-Q6-F02 | /revisar-questao Q6 --corrigir | applied | Imagem movida para fora do blockquote: `> Fonte canonica: ![...]` substituído por `![DER Bloco 7](../artifacts/diagrams/DER_MODELO_DIMENSIONAL_BLOCO_7.svg)`. | 2026-04-17 |
 | RQ-Q6-F03 | /revisar-questao Q6 --corrigir | applied | Conteúdo triplicado/corrompido em `f1961177` removido: célula tinha 3 cópias parciais por edições com defeito. Versão limpa usa segunda cópia (completa) com Legenda de chaves restaurada da primeira cópia. | 2026-04-17 |
+| RF-005 | /revisao-final all --corrigir | applied | 3 linhas de Q6 no Final Checklist Cache reescritas: descrição de "floco de neve leve / 6 dimensões / `dim_categoria` separada" substituída por "estrela simples / 5 dimensões / `categoria` em `dim_produto`"; grão atualizado de "uma linha por item de pedido" para "uma linha por pedido"; seções do Bloco 7 refletem escolha/grão/chaves substitutas/diagrama/tabelas/tipos | 2026-04-17 |
+| RF-006 | /revisao-final all --corrigir | superseded | Linha "Q6-Q7 - implementadas" (FAIL) removida do Final Checklist Cache; substituída por 5 entradas Q7 dedicadas em PASS (estrutura, hipótese/método, rastreabilidade, gráfico, PEP8) adicionadas em 2026-04-17 pela auditoria. Cobertura de Q6 já capturada pelas 3 linhas Q6 existentes | 2026-04-17 |
+| RF-007 | /revisao-final all --corrigir | applied | MD explicação de Q7 (célula `76f81a84`, linha 5) reescrita: "cinco grupos (sem desconto, 1–5 %, 6–10 %, 11–20 %, acima de 20 %)" virou "quatro grupos (sem desconto, 1–5 %, 6–10 %, 11–20 %). O teto histórico observado no dataset é de 20 % (catalogado em DI-004, Q1), portanto não há faixa acima desse limite." Output do `q7_insight_code` já mostra 4 faixas; descrição agora bate com evidência | 2026-04-17 |
 
 ## Errata — Reconciliação CODE vs MD (2026-04-15)
 

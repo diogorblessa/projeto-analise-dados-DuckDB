@@ -1,3 +1,54 @@
+## Correção global — /revisao-final all --corrigir (2026-04-17)
+
+- **Concluído:**
+  - `RF-005` aplicado: 3 linhas Q6 no Final Checklist Cache reescritas de "floco de neve leve / 6 dimensões / `dim_categoria` separada" para "estrela simples / 5 dimensões / `categoria` em `dim_produto`"; grão atualizado para "uma linha por pedido".
+  - `RF-006` resolvido: linha "Q6-Q7 - implementadas" (FAIL) removida do Final Checklist Cache; cobertura preservada pelas 3 linhas Q6 já existentes e pelas 5 entradas Q7 adicionadas na auditoria.
+  - `RF-007` aplicado: MD explicação de Q7 (célula `76f81a84`) reescrita — "cinco grupos" virou "quatro grupos" e foi adicionada reconciliação com teto de 20 % (DI-004). Output e narrativa agora consistentes.
+  - `review-checklist.md`: RF-005/006/007 em Applied/Closed; Open Findings agora contém apenas `RF-004`; `last_writer` = `/revisao-final all --corrigir`.
+
+- **Pendente:**
+  - `RF-004` — Manual: rodar `Restart & Run All` para zerar `execution_count` (atualmente 40-48 e 51) e validar critério PRD §6. `nbconvert --execute` historicamente bloqueado por `PermissionError WinError 5` em Windows — fallback é Jupyter no VS Code.
+
+- **Bloqueios:** nenhum objetivo restante; único item aberto é manual e ambiental.
+
+- **Próximo passo:** Executar `Restart & Run All` no Jupyter (kernel da `.venv` ou Python global aprovado); depois fechar `RF-004` em Applied/Closed.
+
+- **Resultado geral:** PASS com ressalva (RF-004 aberto).
+
+---
+
+## Auditoria global — /revisao-final all --auditar (2026-04-17)
+
+- **Concluído:**
+  - Notebook auditado em 31 células (Setup + Q1..Q7); checklist global aplicado.
+  - Q7 registrada no Final Checklist Cache com 5 PASS dedicadas (estrutura, hipótese/método, rastreabilidade, gráfico, PEP8).
+  - Números de Q7 cruzados com output visível: `ρ=+0,009`, `R$ 697,86`, `R$ 798,41`, `R$ 796,18`, `335` pedidos / `R$ 233.784,50`, `121` pedidos / `R$ 94.761,34` — todos batem com agregado.
+  - Q6: SVG e MD canônico em `artifacts/diagrams/` confirmados coerentes com a versão atual do notebook (estrela simples, 5 dimensões).
+  - 4 achados registrados em Open Findings: `RF-004` (restart & run all), `RF-005` (Q6 checklist stale), `RF-006` (Q6-Q7 FAIL stale), `RF-007` (Q7 MD explicação cita 5 faixas vs. 4 no output).
+
+- **Pendente:**
+  - `RF-004` — Manual: rodar `Restart & Run All` para zerar `execution_count` e validar critério PRD §6.
+  - `RF-005`, `RF-006`, `RF-007` — Objetivas: a serem aplicadas em `/revisao-final --corrigir`.
+
+- **Bloqueios:**
+  - `nbconvert --execute` historicamente bloqueado por `PermissionError WinError 5` em Windows; fallback manual via Jupyter no VS Code.
+
+- **Próximo passo:**
+  - `/revisao-final --corrigir` para aplicar RF-005/006/007; depois `Restart & Run All` para fechar RF-004.
+
+- **Resultado geral:** PASS com ressalva. Nenhum FAIL crítico funcional.
+
+---
+
+## Encerramento — Q7 como done (2026-04-17)
+
+- **Concluído:** Q7 - Insight livre entregue; insight adicional não coberto por Q3/Q4 implementado com hipótese declarada, agregado, gráfico (`artifacts/q7_desconto_receita.png`) e implicação prática.
+- **Pendente:** nenhum
+- **Bloqueios:** nenhum
+- **Próximo passo:** `/revisao-final --auditar` — auditoria global de todas as questões Q1..Q7
+
+---
+
 ## Encerramento — Q6 como done (2026-04-17)
 
 - **Concluído:** `/revisar-questao Q6 --auditar` e `--corrigir` executados; F-Q6-01 (frase "print de referência" inauditável) e F-Q6-02 (imagem em blockquote) aplicados; conteúdo triplicado/corrompido em `f1961177` removido e célula reconstruída limpa com Legenda de chaves restaurada; todos os achados RQ-Q6-F01..F03 fechados; 3 critérios PRD em PASS.

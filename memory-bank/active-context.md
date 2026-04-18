@@ -5,17 +5,17 @@ Ponto de entrada de cada sessão. Curto, sempre sincronizado com `question-statu
 > Autoridade: `docs/PRD.md` define escopo, padrões e aceite. `docs/instrucoes_desafio.md` é contexto histórico. `memory-bank/` registra toda a continuidade operacional persistente. Só um registro aceito em `decisions.md` com `override_of` e `aprovacao` explícitos pode ajustar o item correspondente do PRD. Status vivo fora de `memory-bank/` deve ser tratado como descritivo ou potencialmente desatualizado.
 
 ## Foco atual
-- Q7 - Insight livre - `in_progress`
+- Revisão global — todas as questões Q1..Q7 concluídas
 - Data: 2026-04-17
 
 ## Skill ou fluxo ativo
-- `/insight-livre`
+- Nenhum ativo
 
 ## Decisões aguardando validação
 - Nenhuma.
 
 ## Próximo marco
-- Executar `/insight-livre`: descobrir insight adicional não coberto por Q3/Q4, com hipótese declarada, agregado + gráfico e implicação prática
+- `/revisao-final --auditar`: auditoria global de todo o notebook contra os critérios de aceite do PRD
 
 ## Ponteiros
 - Status por questão: [question-status.md](question-status.md)
