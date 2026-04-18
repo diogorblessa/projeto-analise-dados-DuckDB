@@ -6,9 +6,11 @@ Schema e estado do checklist de aceite. Atualizado por `/revisar-questao` e `/re
 - `schema_version`: 1
 - `notebook`: `notebooks/case_techshop.ipynb`
 - `last_updated`: 2026-04-17
-- `last_writer`: /revisar-questao Q5 --corrigir
+- `last_writer`: /revisar-questao Q6 --corrigir
 
 ## Open Findings
+| id | questao | achado | severidade | acao | source | updated_at |
+|---|---|---|---|---|---|---|
 Nenhum achado aberto.
 
 ## Final Checklist Cache
@@ -48,7 +50,10 @@ Nenhum achado aberto.
 | Q5 — Fase 2: [MD análise] com erros numerados, impacto e correção | PASS | célula 26 (`q5_debug_analise`) | Seção "Recomendação sobre confiabilidade" fecha análise; lista numerada de erros em d24bda53 (intro); impacto em "O que isso significa para o negócio"; correção descrita narrativamente — RQ-Q5-005: observação anterior citava "Correção recomendada" que não existe | /revisar-questao Q5 --auditar | 2026-04-17 |
 | Q5 — afirmações rastreáveis a output visível | PASS | célula 26 cruzada com outputs de célula 25 | R$ 175.599,53 / R$ 731.085,80 / 24,0% / 6 de 6 categorias / divergências pp: todas batem com output_1 de `q5_debug_code` | /revisar-questao Q5 --auditar | 2026-04-17 |
 | Q5 — código PEP8, nomenclatura descritiva | PASS | `formatar_brl`, `calcular_variacao_mensal_ordenada`, `reproduzir_script_literal`, `df_bruto_original`, `df_valido`, `status_validos` | sem `n_*`/`mask_*`; constantes em UPPER_CASE; snake_case descritivo | /revisar-questao Q5 --auditar | 2026-04-17 |
-| Q5-Q7 - implementadas | FAIL | Q6 e Q7 seguem placeholders (`f1961177`, `76f81a84`); Q5 Fase 1 e Fase 2 completas | Blocker remanescente apenas para Q6 e Q7; não invalida Q1-Q5 | /revisar-questao Q5 --auditar | 2026-04-17 |
+| Q6 — diagrama legível com granularidade declarada | PASS | SVG `DER_MODELO_DIMENSIONAL_BLOCO_7.svg` referenciado na célula; arquivo existe em `artifacts/diagrams/`; grão "uma linha por item de pedido" explícito | F-Q6-02: imagem dentro de blockquote; verificar renderização | /revisar-questao Q6 --auditar | 2026-04-17 |
+| Q6 — tabelas criadas com justificativa de escolha | PASS | 6 dimensões + 1 fato com dicionário completo; escolha floco de neve leve justificada por hierarquia `produto→categoria` e custo de 1 JOIN | F-Q6-01: "print de referência" inauditável na justificativa — baixa severidade | /revisar-questao Q6 --auditar | 2026-04-17 |
+| Q6 — estrutura markdown-only (sem CODE obrigatório) | PASS | Bloco 7 com objetivo, grão, diagrama, dicionário, suporte Q3/Q4 e 8 limitações documentadas | - | /revisar-questao Q6 --auditar | 2026-04-17 |
+| Q6-Q7 - implementadas | FAIL | Q7 segue placeholder (`76f81a84`); Q6 redesenhado e em review com achados F-Q6-01/02 | Único blocker remanescente é Q7 | /revisar-questao Q6 --auditar | 2026-04-17 |
 
 ## Applied/Closed
 | id | source | status_final | resolucao | updated_at |
@@ -74,6 +79,10 @@ Nenhum achado aberto.
 | RQ-Q5-003 | /revisar-questao Q5 --corrigir | applied | `q5_debug_code` tinha `execution_count=null` e 0 outputs (limpos por re-execução de `atualizar_bloco6_code.py` com source regressivo); notebook re-executado via `nbconvert --execute` após correção RQ-Q5-004; outputs restaurados: 1 stream + 2 figuras (execution_count=9). | 2026-04-17 |
 | RQ-Q5-004 | /revisar-questao Q5 --corrigir | applied | `plotar_grafico_corrigido_mom` usava `((indice % 3) - 1) * 8` com `10 + deslocamento_rotulo_y` no xytext (3 posições Y repetidas, sobreposição potencial); restaurado para `OFFSETS_Y = [-20, -12, -4, 4, 12, 20]` com `xytext=(x, deslocamento_rotulo_y)` (6 posições únicas); aplicado em `q5_debug_code` e `scripts/atualizar_bloco6_code.py`. | 2026-04-17 |
 | RQ-Q5-005 | /revisar-questao Q5 --corrigir | applied | Observação stale corrigida: checklist item "Q5 — Fase 2: [MD análise] com erros numerados..." atualizou evidência de "Correção recomendada" (seção inexistente) para "Recomendação sobre confiabilidade" (seção real). Apenas o texto de observação do checklist foi alterado; notebook não tocado. | 2026-04-17 |
+| RQ-Q6-placeholder | /revisar-questao Q6 --auditar | superseded | Entrada "Q5-Q7 implementadas" com Q6 como placeholder supersedida pelo redesign do bloco 7 (SVG, dicionário, sustento Q3/Q4). Substituída por entradas específicas Q6 no Final Checklist Cache. | 2026-04-17 |
+| RQ-Q6-F01 | /revisar-questao Q6 --corrigir | applied | Frase "aproximar a composição visual do print de referência e" removida do parágrafo de justificativa do floco de neve em `f1961177`. Layout section agora lê "melhorar a legibilidade do diagrama e manter a separação entre produto e agrupamento analítico". | 2026-04-17 |
+| RQ-Q6-F02 | /revisar-questao Q6 --corrigir | applied | Imagem movida para fora do blockquote: `> Fonte canonica: ![...]` substituído por `![DER Bloco 7](../artifacts/diagrams/DER_MODELO_DIMENSIONAL_BLOCO_7.svg)`. | 2026-04-17 |
+| RQ-Q6-F03 | /revisar-questao Q6 --corrigir | applied | Conteúdo triplicado/corrompido em `f1961177` removido: célula tinha 3 cópias parciais por edições com defeito. Versão limpa usa segunda cópia (completa) com Legenda de chaves restaurada da primeira cópia. | 2026-04-17 |
 
 ## Errata — Reconciliação CODE vs MD (2026-04-15)
 

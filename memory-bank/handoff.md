@@ -1,3 +1,12 @@
+## Encerramento — Q6 como done (2026-04-17)
+
+- **Concluído:** `/revisar-questao Q6 --auditar` e `--corrigir` executados; F-Q6-01 (frase "print de referência" inauditável) e F-Q6-02 (imagem em blockquote) aplicados; conteúdo triplicado/corrompido em `f1961177` removido e célula reconstruída limpa com Legenda de chaves restaurada; todos os achados RQ-Q6-F01..F03 fechados; 3 critérios PRD em PASS.
+- **Pendente:** nenhum
+- **Bloqueios:** nenhum
+- **Próximo passo:** `/iniciar-questao Q7`
+
+---
+
 ## Q6 bloco redesenhado — aguardando revisão (2026-04-17)
 
 - **Concluído:** bloco 7 (`f1961177`) redesenhado para apresentação visual próxima ao print de referência; Mermaid removido do conteúdo canônico e substituído por `artifacts/diagrams/DER_MODELO_DIMENSIONAL.svg`; modelo exibido passou de estrela para floco de neve leve, com `dim_categoria` separada de `dim_produto`; grão item de pedido preservado; 6 dimensões (`dim_tempo`, `dim_cliente`, `dim_produto`, `dim_categoria`, `dim_localidade`, `dim_status`), dicionário completo, seção Q3/Q4 atualizada e 8 limitações mantidas.
