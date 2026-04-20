@@ -1,4 +1,4 @@
-# Case TechShop - Análise de Dados com DuckDB
+# Case TechShop - Análise de Dados com DuckDB e ferramentas de IA
 
 ## 📋 Sobre
 
